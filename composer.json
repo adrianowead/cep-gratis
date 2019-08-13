@@ -1,6 +1,7 @@
 {
     "name": "wead/cep-gratis",
     "description": "Busca gratuita de cep em PHP",
+    "keywords": ["cep", "zipcode", "gratis", "api", "webservice", "correios"],
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "~6.0"

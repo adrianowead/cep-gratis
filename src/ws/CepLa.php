@@ -7,6 +7,18 @@ use GuzzleHttp\Client;
 class CepLa
 {
     private $endPoint = "http://cep.la";
+    private $apiKey = null;
+    private $apiSecret = null;
+
+    public function __construct($credential = [])
+    {
+        if (is_array($credential)) {
+            if (isset($credential['apiKey']) && isset($credential['apiSecret'])) {
+                $this->apiKey = $credential['apiKey'];
+                $this->apiSecret = $credential['apiSecret'];
+            }
+        }
+    }
 
     public function getAddressFromZipcode($zipCode)
     {

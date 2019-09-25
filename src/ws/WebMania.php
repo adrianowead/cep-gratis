@@ -12,8 +12,8 @@ class WebMania
 
     public function __construct($credential = [])
     {
-        if(is_array($credential)){
-            if(isset($credential['apiKey']) && isset($credential['apiSecret'])){
+        if (is_array($credential)) {
+            if (isset($credential['apiKey']) && isset($credential['apiSecret'])) {
                 $this->apiKey = $credential['apiKey'];
                 $this->apiSecret = $credential['apiSecret'];
             }
@@ -22,7 +22,7 @@ class WebMania
 
     public function getAddressFromZipcode($zipCode)
     {
-        if (!$this->apiKey){
+        if (!$this->apiKey) {
             return $this->normalizeResponse([]);
         }
 
@@ -35,7 +35,9 @@ class WebMania
         $client = new Client(['base_uri' => "{$this->endPoint}/{$zipCode}/"]);
 
         try {
-            $response = $client->get('', [
+            $response = $client->get(
+                '',
+                [
                 'headers' => $headers,
                 'connect_timeout' => 5, // seconds
                 'query' => [
@@ -43,7 +45,8 @@ class WebMania
                     'app_secret' => $this->apiSecret,
                 ],
                 'debug' => false,
-            ]);
+                ]
+            );
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             throw new \Exception("WebMania request error: {$e->getResponse()->getBody()->getContents()}");
         }
@@ -56,8 +59,7 @@ class WebMania
 
     private function normalizeResponse($address)
     {
-        if (sizeof($address) > 0 && !isset($address["error"]))
-        {
+        if (sizeof($address) > 0 && !isset($address["error"])) {
             return [
                 "status" => true,
                 "address" => $address["endereco"],

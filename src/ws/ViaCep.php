@@ -19,11 +19,14 @@ class ViaCep
         $client = new Client(['base_uri' => "{$this->endPoint}/{$zipCode}/"]);
 
         try {
-            $response = $client->get('json', [
+            $response = $client->get(
+                'json',
+                [
                 'headers' => $headers,
                 'connect_timeout' => 5, // seconds
                 'debug' => false,
-            ]);
+                ]
+            );
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             throw new \Exception("ViaCep request error: {$e->getResponse()->getBody()->getContents()}");
         }
@@ -34,10 +37,9 @@ class ViaCep
         return $this->normalizeResponse((array)$response);
     }
 
-    private function normalizeResponse( $address )
+    private function normalizeResponse($address)
     {
-        if (sizeof($address) > 0 && !isset($address["error"]))
-        {
+        if (sizeof($address) > 0 && !isset($address["error"])) {
             return [
                 "status" => true,
                 "address" => $address["logradouro"],

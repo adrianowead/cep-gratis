@@ -19,11 +19,14 @@ class CepLa
         $client = new Client(['base_uri' => "{$this->endPoint}/{$zipCode}"]);
 
         try {
-            $response = $client->get('', [
+            $response = $client->get(
+                '',
+                [
                 'headers' => $headers,
                 'connect_timeout' => 5, // seconds
                 'debug' => false,
-            ]);
+                ]
+            );
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             throw new \Exception("WebMania request error: {$e->getResponse()->getBody()->getContents()}");
         }
@@ -36,8 +39,7 @@ class CepLa
 
     private function normalizeResponse($address)
     {
-        if (sizeof($address) > 0)
-        {
+        if (sizeof($address) > 0) {
             return [
                 "status" => true,
                 "address" => $address["logradouro"],

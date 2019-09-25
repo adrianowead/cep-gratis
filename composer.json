@@ -32,6 +32,11 @@
     "scripts": {
         "psr12": "phpcs --standard=PSR12 --colors src/",
         "psr12-fix": "phpcbf --standard=PSR12 --colors src/",
-        "phan": "phan --allow-polyfill-parser"
+        "phan": "phan --allow-polyfill-parser",
+        "check": [
+            "@phan",
+            "@psr12-fix",
+            "@psr12"
+        ]
     }
 }

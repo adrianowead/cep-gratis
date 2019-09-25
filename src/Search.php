@@ -7,7 +7,8 @@ use Wead\ZipCode\WS\ViaCep;
 use Wead\ZipCode\WS\WideNet;
 use Wead\ZipCode\WS\WebMania;
 
-class Search{
+class Search
+{
     private $listApiTest = [
         'getFromViaCep',
         'getFromWebMania',
@@ -22,13 +23,15 @@ class Search{
         ]
     ];
 
-    public function setCredential($service, $credential = []){
+    public function setCredential($service, $credential = [])
+    {
         if( is_string($service) && is_array($credential) ){
             $this->credential[$service] = $credential;
         }
     }
 
-    public function getAddressFromZipcode($zipCode){
+    public function getAddressFromZipcode($zipCode)
+    {
         $found = false;
         $errors = [];
 
@@ -58,7 +61,8 @@ class Search{
         return $found;
     }
 
-    private function getFromViaCep($zipCode){
+    private function getFromViaCep($zipCode)
+    {
         $zip = new ViaCep($this->credential);
         $zip = $zip->getAddressFromZipcode($zipCode);
 
@@ -72,14 +76,16 @@ class Search{
         return $zip;
     }
 
-    private function getFromWideNet($zipCode){
+    private function getFromWideNet($zipCode)
+    {
         $zip = new WideNet($this->credential);
         $zip = $zip->getAddressFromZipcode($zipCode);
 
         return $zip;
     }
 
-    private function getFromCepLa($zipCode){
+    private function getFromCepLa($zipCode)
+    {
         $zip = new CepLa($this->credential);
         $zip = $zip->getAddressFromZipcode($zipCode);
 

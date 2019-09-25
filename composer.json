@@ -23,5 +23,9 @@
             "Wead\\ZipCode\\WS\\": "src/ws"
         },
         "files": []
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5",
+        "squizlabs/php_codesniffer": "*"
     }
 }

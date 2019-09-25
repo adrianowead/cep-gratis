@@ -4,7 +4,8 @@ namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
 
-class WebMania{
+class WebMania
+{
     private $endPoint = "https://webmaniabr.com/api/1/cep";
     private $apiKey = null;
     private $apiSecret = null;
@@ -21,7 +22,7 @@ class WebMania{
 
     public function getAddressFromZipcode($zipCode)
     {
-        if(!$this->apiKey){
+        if (!$this->apiKey){
             return $this->normalizeResponse([]);
         }
 
@@ -53,9 +54,9 @@ class WebMania{
         return $this->normalizeResponse((array)$response);
     }
 
-    private function normalizeResponse( $address )
+    private function normalizeResponse($address)
     {
-        if( sizeof($address) > 0 && !isset($address["error"]) )
+        if (sizeof($address) > 0 && !isset($address["error"]))
         {
             return [
                 "status" => true,
@@ -65,9 +66,7 @@ class WebMania{
                 "state" => $address["uf"],
                 "api" => "WebMania"
             ];
-        }
-        else
-        {
+        } else {
             return [
                 "status" => false,
                 "address" => null,

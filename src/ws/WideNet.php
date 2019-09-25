@@ -4,7 +4,8 @@ namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
 
-class WideNet{
+class WideNet
+{
     private $endPoint = "http://apps.widenet.com.br/busca-cep/api/cep.json";
 
     public function getAddressFromZipcode($zipCode)
@@ -18,14 +19,17 @@ class WideNet{
         $client = new Client(['base_uri' => $this->endPoint]);
 
         try {
-            $response = $client->get('', [
-                'headers' => $headers,
-                'connect_timeout' => 5, // seconds
-                'query' => [
-                    'code' => $zipCode
-                ],
-                'debug' => false,
-            ]);
+            $response = $client->get(
+                '',
+                [
+                    'headers' => $headers,
+                    'connect_timeout' => 5, // seconds
+                    'query' => [
+                        'code' => $zipCode
+                    ],
+                    'debug' => false
+                ]
+            );
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             throw new \Exception("WebMania request error: {$e->getResponse()->getBody()->getContents()}");
         }
@@ -36,10 +40,9 @@ class WideNet{
         return $this->normalizeResponse((array)$response);
     }
 
-    private function normalizeResponse( $address )
+    private function normalizeResponse($address)
     {
-        if( sizeof($address) > 0 && $address['status'] == 1 )
-        {
+        if (sizeof($address) > 0 && $address['status'] == 1) {
             return [
                 "status" => true,
                 "address" => $address["address"],
@@ -48,9 +51,7 @@ class WideNet{
                 "state" => $address["state"],
                 "api" => "WideNet"
             ];
-        }
-        else
-        {
+        } else {
             return [
                 "status" => false,
                 "address" => null,

@@ -4,7 +4,8 @@ namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
 
-class CepLa{
+class CepLa
+{
     private $endPoint = "http://cep.la";
 
     public function getAddressFromZipcode($zipCode)
@@ -33,9 +34,9 @@ class CepLa{
         return $this->normalizeResponse((array)$response);
     }
 
-    private function normalizeResponse( $address )
+    private function normalizeResponse($address)
     {
-        if( sizeof($address) > 0 )
+        if (sizeof($address) > 0)
         {
             return [
                 "status" => true,
@@ -45,9 +46,7 @@ class CepLa{
                 "state" => $address["uf"],
                 "api" => "CepLa"
             ];
-        }
-        else
-        {
+        } else {
             return [
                 "status" => false,
                 "address" => null,

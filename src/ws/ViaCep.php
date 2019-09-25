@@ -4,7 +4,8 @@ namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
 
-class ViaCep{
+class ViaCep
+{
     private $endPoint = "https://viacep.com.br/ws/";
 
     public function getAddressFromZipcode($zipCode)
@@ -35,7 +36,7 @@ class ViaCep{
 
     private function normalizeResponse( $address )
     {
-        if( sizeof($address) > 0 && !isset($address["error"]) )
+        if (sizeof($address) > 0 && !isset($address["error"]))
         {
             return [
                 "status" => true,
@@ -45,9 +46,7 @@ class ViaCep{
                 "state" => $address["uf"],
                 "api" => "ViaCep"
             ];
-        }
-        else
-        {
+        } else {
             return [
                 "status" => false,
                 "address" => null,

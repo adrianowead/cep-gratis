@@ -38,5 +38,11 @@
             "@psr12-fix",
             "@psr12"
         ]
+    },
+    "scripts-descriptions": {
+        "psr12": "Valida se o projeto está seguindo os padrões da PSR-12",
+        "psr12-fix": "Executa pequenas correções automáticas para padronização na PSR-12",
+        "phan": "Executa uma validação no código, em busca de erros de implementação",
+        "check": "Executa as verificações do código em sequência"
     }
 }

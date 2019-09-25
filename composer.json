@@ -28,5 +28,10 @@
         "phpunit/phpunit": "^7.5",
         "squizlabs/php_codesniffer": "*",
         "phan/phan": "^2.2"
+    },
+    "scripts": {
+        "psr12": "phpcs --standard=PSR12 --colors src/",
+        "psr12-fix": "phpcbf --standard=PSR12 --colors src/",
+        "phan": "phan --allow-polyfill-parser"
     }
 }

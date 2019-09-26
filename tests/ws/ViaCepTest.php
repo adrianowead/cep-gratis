@@ -2,8 +2,8 @@
 
 namespace Wead\ZipCode\Tests\WS;
 
-use PHPUnit\Framework\TestCase;
 use Wead\ZipCode\WS\ViaCep;
+use PHPUnit\Framework\TestCase;
 
 class ViaCepTest extends TestCase
 {
@@ -42,8 +42,8 @@ class ViaCepTest extends TestCase
     public function getCepDefaultWithOutput()
     {
         return [
-            [
-                "03624-0-10",
+            "Dados esperados Luís Asson" => [
+                "03624010",
                 [
                     "status" => true,
                     "address" => "Rua Luís Asson",
@@ -59,7 +59,7 @@ class ViaCepTest extends TestCase
     public function getMockInputOutput()
     {
         return [
-            [
+            "Input e Output Luís Asson" => [
                 [
                     "logradouro" => "Rua Luís Asson",
                     "bairro" => "Vila Buenos Aires",

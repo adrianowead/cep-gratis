@@ -3,6 +3,7 @@
 namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
+use Wead\ZipCode\Exceptions\ZipCodeNotFoundException;
 
 class ViaCep
 {
@@ -40,7 +41,7 @@ class ViaCep
                 ]
             );
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            throw new \Exception("ViaCep request error: {$e->getResponse()->getBody()->getContents()}");
+            throw new ZipCodeNotFoundException("ViaCep request error to find zipcode: {$zipCode}");
         }
 
         $response = $response->getBody()->getContents();

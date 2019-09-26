@@ -42,8 +42,8 @@ class CepLaTest extends TestCase
     public function getCepDefaultWithOutput()
     {
         return [
-            [
-                "03624-0-10",
+            "Dados esperados Luís Asson" => [
+                "03624010",
                 [
                     "status" => true,
                     "address" => "Rua Luís Asson",
@@ -59,7 +59,7 @@ class CepLaTest extends TestCase
     public function getMockInputOutput()
     {
         return [
-            [
+            "Input e Output Luís Asson" => [
                 [
                     "logradouro" => "Rua Luís Asson",
                     "bairro" => "Vila Buenos Aires",

@@ -34,7 +34,7 @@
         "psr12-fix-src": "phpcbf --standard=PSR12 --colors src/",
         "psr12-fix-tests": "phpcbf --standard=PSR12 --colors tests/",
         "phan": "phan --allow-polyfill-parser",
-        "test": "phpunit tests/ --colors=always",
+        "test": "phpunit --colors=always",
         "psr12-fix": [
             "@psr12-fix-src",
             "@psr12-fix-tests"

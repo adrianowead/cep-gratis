@@ -2,8 +2,8 @@
 
 namespace Wead\ZipCode\Tests\WS;
 
-use PHPUnit\Framework\TestCase;
 use Wead\ZipCode\WS\WideNet;
+use PHPUnit\Framework\TestCase;
 
 class WideNetTest extends TestCase
 {
@@ -35,15 +35,15 @@ class WideNetTest extends TestCase
         // must be qual structure and values
         self::assertEquals($expected, $out);
     }
-    
+
     /**
      * Returns all data to be used on tests
      */
     public function getCepDefaultWithOutput()
     {
         return [
-            [
-                "03624-0-10",
+            "Dados esperados Luís Asson" => [
+                "03624010",
                 [
                     "status" => true,
                     "address" => "Rua Luís Asson",
@@ -59,7 +59,7 @@ class WideNetTest extends TestCase
     public function getMockInputOutput()
     {
         return [
-            [
+            "Input e Output Luís Asson" => [
                 [
                     "address" => "Rua Luís Asson",
                     "district" => "Vila Buenos Aires",

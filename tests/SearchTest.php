@@ -4,6 +4,7 @@ namespace Wead\ZipCode\Tests;
 
 use Wead\ZipCode\Search;
 use PHPUnit\Framework\TestCase;
+use Wead\ZipCode\Exceptions\ZipCodeNotFoundException;
 
 class SearchTest extends TestCase
 {
@@ -125,25 +126,48 @@ class SearchTest extends TestCase
         // must be qual structure and values
         self::assertEquals($expected, $out);
     }
+
+    /**
+     * @dataProvider getCepInvalid
+     */
+    public function testCustonExceptionInvalidZipcodeDefaultUsage(string $zipCode)
+    {
+        $this->expectException(ZipCodeNotFoundException::class);
+        $this->expectExceptionMessage("Error to get address by zipcode: {$zipCode}");
+        $this->expectExceptionCode(99);
+        
+        $search = new Search();
+        $search->getAddressFromZipcode($zipCode);
+    }
     
+    /**
+     * Returns all data to be used on tests
+     */
+    public function getCepInvalid()
+    {
+        return [
+            "Cep Inválido" => ["00000000"]
+        ];
+    }
+
     /**
      * Returns all data to be used on tests
      */
     public function getCepDefault()
     {
         return [
-            ["03624-0-10"]
+            "Cep Luís Asson" => ["03-6240-10"]
         ];
     }
-    
+
     /**
      * Returns all data to be used on tests
      */
     public function getCepDefaultWithOutput()
     {
-        return [
-            [
-                "03624-0-10",
+        return [ // first level is each test
+            "Dados esperados Luís Asson" => [ // second level is each param to test
+                "036-24010",
                 [
                     "status" => true,
                     "address" => "Rua Luís Asson",

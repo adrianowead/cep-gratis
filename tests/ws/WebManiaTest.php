@@ -2,8 +2,8 @@
 
 namespace Wead\ZipCode\Tests\WS;
 
-use PHPUnit\Framework\TestCase;
 use Wead\ZipCode\WS\WebMania;
+use PHPUnit\Framework\TestCase;
 
 class WebManiaTest extends TestCase
 {
@@ -40,15 +40,15 @@ class WebManiaTest extends TestCase
         // must be qual structure and values
         self::assertEquals($expected, $out);
     }
-    
+
     /**
      * Returns all data to be used on tests
      */
     public function getCepDefaultWithOutput()
     {
         return [
-            [
-                "03624-0-10",
+            "Dados esperados Luís Asson" => [
+                "03624010",
                 [
                     "status" => true,
                     "address" => "Rua Luís Asson",
@@ -64,7 +64,7 @@ class WebManiaTest extends TestCase
     public function getMockInputOutput()
     {
         return [
-            [
+            "Input e Output Luís Asson" => [
                 [
                     "endereco" => "Rua Luís Asson",
                     "bairro" => "Vila Buenos Aires",

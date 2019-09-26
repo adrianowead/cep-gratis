@@ -3,6 +3,7 @@
 namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
+use Wead\ZipCode\Exceptions\ZipCodeNotFoundException;
 
 class CepLa
 {
@@ -40,7 +41,7 @@ class CepLa
                 ]
             );
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            throw new \Exception("WebMania request error: {$e->getResponse()->getBody()->getContents()}");
+            throw new ZipCodeNotFoundException("CepLa request error to find zipcode: {$zipCode}");
         }
 
         $response = $response->getBody()->getContents();

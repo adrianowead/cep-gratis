@@ -11,6 +11,7 @@
 
 namespace Wead\ZipCode;
 
+use Wead\ZipCode\Exceptions\ZipCodeNotFoundException;
 use Wead\ZipCode\WS\CepLa;
 use Wead\ZipCode\WS\ViaCep;
 use Wead\ZipCode\WS\WideNet;
@@ -56,8 +57,10 @@ class Search
 
             $api = array_keys($this->countAttempts)[0];
             
+            $this->countAttempts[$api]++;
+            
             if ($this->countAttempts[$api] > 3) {
-                throw new \Exception("Address not found! {$zipCode}");
+                throw new ZipCodeNotFoundException("Error to get address by zipcode: {$zipCode}");
             }
             
             try {
@@ -84,8 +87,6 @@ class Search
                 }
                 
                 $found = is_array($found) ? $found['status'] === true ? $found : false : false;
-
-                $this->countAttempts[$api]++;
             } catch (\Exception $e) {
                 $errors[$api] = $e->getMessage();
 
@@ -96,10 +97,8 @@ class Search
                         $msg .= "[{$i}]: {$m}" . PHP_EOL . PHP_EOL;
                     }
 
-                    throw new \Exception(
-                        "Error to get address by zipcode: " .
-                        PHP_EOL .
-                        $msg
+                    throw new ZipCodeNotFoundException(
+                        "Error to get address by zipcode: {$zipCode}"
                     );
                 }
             }

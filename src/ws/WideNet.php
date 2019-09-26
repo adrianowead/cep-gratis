@@ -3,6 +3,7 @@
 namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
+use Wead\ZipCode\Exceptions\ZipCodeNotFoundException;
 
 class WideNet
 {
@@ -43,7 +44,7 @@ class WideNet
                 ]
             );
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            throw new \Exception("WebMania request error: {$e->getResponse()->getBody()->getContents()}");
+            throw new ZipCodeNotFoundException("WebMania request error to find zipcode: {$zipCode}");
         }
 
         $response = $response->getBody()->getContents();

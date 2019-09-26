@@ -26,7 +26,7 @@ class Search
     ];
 
     private $credential = [
-        'WebMania' => [
+        'webMania' => [
             'apiKey' => null,
             'apiSecret' => null
         ]
@@ -56,7 +56,7 @@ class Search
 
             $api = array_keys($this->countAttempts)[0];
             
-            if( $this->countAttempts[$api] > 3 ){
+            if ($this->countAttempts[$api] > 3) {
                 throw new \Exception("Address not found! {$zipCode}");
             }
             
@@ -110,7 +110,7 @@ class Search
 
     private function getFromViaCep($zipCode)
     {
-        $zip = new ViaCep($this->credential);
+        $zip = new ViaCep(isset($this->credential['viaCep']) ? $this->credential['viaCep'] : []);
         $zip = $zip->getAddressFromZipcode($zipCode);
 
         return $zip;
@@ -118,7 +118,7 @@ class Search
 
     private function getFromWebMania($zipCode)
     {
-        $zip = new WebMania($this->credential);
+        $zip = new WebMania(isset($this->credential['webMania']) ? $this->credential['webMania'] : []);
         $zip = $zip->getAddressFromZipcode($zipCode);
 
         return $zip;
@@ -126,7 +126,7 @@ class Search
 
     private function getFromWideNet($zipCode)
     {
-        $zip = new WideNet($this->credential);
+        $zip = new WideNet(isset($this->credential['wideNet']) ? $this->credential['wideNet'] : []);
         $zip = $zip->getAddressFromZipcode($zipCode);
 
         return $zip;
@@ -134,7 +134,7 @@ class Search
 
     private function getFromCepLa($zipCode)
     {
-        $zip = new CepLa($this->credential);
+        $zip = new CepLa(isset($this->credential['cepLa']) ? $this->credential['cepLa'] : []);
         $zip = $zip->getAddressFromZipcode($zipCode);
 
         return $zip;

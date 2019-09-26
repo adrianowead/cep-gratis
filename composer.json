@@ -25,18 +25,25 @@
         "files": []
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.5",
         "squizlabs/php_codesniffer": "*",
-        "phan/phan": "^2.2"
+        "phan/phan": "^2.2",
+        "phpunit/phpunit": "^8"
     },
     "scripts": {
         "psr12": "phpcs --standard=PSR12 --colors src/",
-        "psr12-fix": "phpcbf --standard=PSR12 --colors src/",
+        "psr12-fix-src": "phpcbf --standard=PSR12 --colors src/",
+        "psr12-fix-tests": "phpcbf --standard=PSR12 --colors tests/",
         "phan": "phan --allow-polyfill-parser",
+        "test": "phpunit tests/ --colors=always",
+        "psr12-fix": [
+            "@psr12-fix-src",
+            "@psr12-fix-tests"
+        ],
         "check": [
             "@phan",
             "@psr12-fix",
-            "@psr12"
+            "@psr12",
+            "@test"
         ]
     },
     "scripts-descriptions": {

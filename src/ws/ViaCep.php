@@ -51,7 +51,7 @@ class ViaCep
 
     private function normalizeResponse($address)
     {
-        if (sizeof($address) > 0 && !isset($address["error"])) {
+        if (sizeof($address) > 0 && !isset($address["erro"])) {
             return [
                 "status" => true,
                 "address" => $address["logradouro"],

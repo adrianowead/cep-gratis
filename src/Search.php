@@ -56,6 +56,10 @@ class Search
 
             $api = array_keys($this->countAttempts)[0];
             
+            if( $this->countAttempts[$api] > 3 ){
+                throw new \Exception("Address not found! {$zipCode}");
+            }
+            
             try {
                 switch ($api) {
                     case 'ViaCep':

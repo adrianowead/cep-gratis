@@ -21,10 +21,11 @@ class SearchTest extends TestCase
         self::assertNull($out);
     }
     
-    public function testGetAddressFromZipcodeDefaultUsage()
+    /**
+     * @dataProvider getCepDefault
+     */
+    public function testGetAddressFromZipcodeDefaultUsage(string $zipCode)
     {
-        $zipCode = '03624-0-10';
-
         $expected = [
             "status" => true,
             "address" => "Rua Luís Asson",
@@ -44,18 +45,12 @@ class SearchTest extends TestCase
         self::assertEquals($expected, $out);
     }
     
-    public function testGetAddressFromViaCepDirect()
+    /**
+     * @dataProvider getCepDefaultWithOutput
+     */
+    public function testGetAddressFromViaCepDirect(string $zipCode, array $expected)
     {
-        $zipCode = '03624-0-10';
-
-        $expected = [
-            "status" => true,
-            "address" => "Rua Luís Asson",
-            "district" => "Vila Buenos Aires",
-            "city" => "São Paulo",
-            "state" => "SP",
-            "api" => "ViaCep"
-        ];
+        $expected["api"] = "ViaCep";
 
         // reflect class to access private methods
         $search = new Search();
@@ -70,18 +65,12 @@ class SearchTest extends TestCase
         self::assertEquals($expected, $out);
     }
     
-    public function testGetAddressFromWebManiaDirect()
+    /**
+     * @dataProvider getCepDefaultWithOutput
+     */
+    public function testGetAddressFromWebManiaDirect(string $zipCode, array $expected)
     {
-        $zipCode = '03624-0-10';
-
-        $expected = [
-            "status" => true,
-            "address" => "Rua Luís Asson",
-            "district" => "Vila Buenos Aires",
-            "city" => "São Paulo",
-            "state" => "SP",
-            "api" => "WebMania"
-        ];
+        $expected["api"] = "WebMania";
 
         // reflect class to access private methods
         $search = new Search();
@@ -97,17 +86,12 @@ class SearchTest extends TestCase
         self::assertEquals($expected, $out);
     }
     
-    public function testGetAddressWideNetDirect()
+    /**
+     * @dataProvider getCepDefaultWithOutput
+     */
+    public function testGetAddressWideNetDirect(string $zipCode, array $expected)
     {
-        $zipCode = '03624-0-10';
-
-        $expected = [
-            "status" => true,
-            "address" => "Rua Luís Asson",
-            "district" => "Vila Buenos Aires",
-            "city" => "São Paulo",
-            "state" => "SP"
-        ];
+        $expected["api"] = "WideNet";
 
         // reflect class to access private methods
         $search = new Search();
@@ -117,26 +101,17 @@ class SearchTest extends TestCase
         $method->setAccessible(true); // set accessible private method
 
         $out = $method->invoke($search, $zipCode);
-        
-        if (isset($out['api'])) {
-            unset($out['api']);
-        }
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
     }
     
-    public function testGetAddressCepLaDirect()
+    /**
+     * @dataProvider getCepDefaultWithOutput
+     */
+    public function testGetAddressCepLaDirect(string $zipCode, array $expected)
     {
-        $zipCode = '03624-0-10';
-
-        $expected = [
-            "status" => true,
-            "address" => "Rua Luís Asson",
-            "district" => "Vila Buenos Aires",
-            "city" => "São Paulo",
-            "state" => "SP"
-        ];
+        $expected["api"] = "CepLa";
 
         // reflect class to access private methods
         $search = new Search();
@@ -146,12 +121,35 @@ class SearchTest extends TestCase
         $method->setAccessible(true); // set accessible private method
 
         $out = $method->invoke($search, $zipCode);
-        
-        if (isset($out['api'])) {
-            unset($out['api']);
-        }
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
+    }
+    
+    /**
+     * Returns all data to be used on tests
+     */
+    public function getCepDefault(){
+        return [
+            ["03624-0-10"]
+        ];
+    }
+    
+    /**
+     * Returns all data to be used on tests
+     */
+    public function getCepDefaultWithOutput(){
+        return [
+            [
+                "03624-0-10",
+                [
+                    "status" => true,
+                    "address" => "Rua Luís Asson",
+                    "district" => "Vila Buenos Aires",
+                    "city" => "São Paulo",
+                    "state" => "SP"
+                ]
+            ]
+        ];
     }
 }

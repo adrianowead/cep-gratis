@@ -7,19 +7,11 @@ use Wead\ZipCode\WS\CepLa;
 
 class CepLaTest extends TestCase
 {
-    public function testGetAddressFromZipcodeCepLaDefaultUsage()
+    /**
+     * @dataProvider getCepDefaultWithOutput
+     */
+    public function testGetAddressFromZipcodeCepLaDefaultUsage(string $zipCode, array $expected)
     {
-        $zipCode = '03624-0-10';
-
-        $expected = [
-            "status" => true,
-            "address" => "Rua Luís Asson",
-            "district" => "Vila Buenos Aires",
-            "city" => "São Paulo",
-            "state" => "SP",
-            "api" => "CepLa"
-        ];
-
         $cepLa = new CepLa();
         $out = $cepLa->getAddressFromZipcode($zipCode);
 
@@ -27,24 +19,11 @@ class CepLaTest extends TestCase
         self::assertEquals($expected, $out);
     }
     
-    public function testNormalizeResponseCepLaDefaultUsage()
+    /**
+     * @dataProvider getMockInputOutput
+     */
+    public function testNormalizeResponseCepLaDefaultUsage(array $address, array $expected)
     {
-        $expected = [
-            "status" => true,
-            "address" => "Rua Luís Asson",
-            "district" => "Vila Buenos Aires",
-            "city" => "São Paulo",
-            "state" => "SP",
-            "api" => "CepLa"
-        ];
-        
-        $address = [
-            "logradouro" => "Rua Luís Asson",
-            "bairro" => "Vila Buenos Aires",
-            "cidade" => "São Paulo",
-            "uf" => "SP",
-        ];
-
         $cepLa = new CepLa();
         
         $reflect = new \ReflectionObject($cepLa);
@@ -55,5 +34,45 @@ class CepLaTest extends TestCase
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
+    }
+    
+    /**
+     * Returns all data to be used on tests
+     */
+    public function getCepDefaultWithOutput(){
+        return [
+            [
+                "03624-0-10",
+                [
+                    "status" => true,
+                    "address" => "Rua Luís Asson",
+                    "district" => "Vila Buenos Aires",
+                    "city" => "São Paulo",
+                    "state" => "SP",
+                    "api" => "CepLa"
+                ]
+            ]
+        ];
+    }
+    
+    public function getMockInputOutput(){
+        return [
+            [
+                [
+                    "logradouro" => "Rua Luís Asson",
+                    "bairro" => "Vila Buenos Aires",
+                    "cidade" => "São Paulo",
+                    "uf" => "SP",
+                ],
+                [
+                    "status" => true,
+                    "address" => "Rua Luís Asson",
+                    "district" => "Vila Buenos Aires",
+                    "city" => "São Paulo",
+                    "state" => "SP",
+                    "api" => "CepLa"
+                ]
+            ]
+        ];
     }
 }

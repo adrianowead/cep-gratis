@@ -12,44 +12,23 @@ class WebManiaTest extends TestCase
             'apiSecret' => '6j4mw7OYBXaoHI7QEUzC6qWAoKJUjoV8UduvwhjwhvYB71dL'
     ];
     
-    public function testGetAddressFromZipcodeWebManiaDefaultUsage()
+    /**
+     * @dataProvider getCepDefaultWithOutput
+     */
+    public function testGetAddressFromZipcodeWebManiaDefaultUsage(string $zipCode, array $expected)
     {
-        $zipCode = '03624-0-10';
-
-        $expected = [
-            "status" => true,
-            "address" => "Rua Luís Asson",
-            "district" => "Vila Buenos Aires",
-            "city" => "São Paulo",
-            "state" => "SP",
-            "api" => "WebMania"
-        ];
-
         $webMania = new WebMania($this->webManiaCredential);
         $out = $webMania->getAddressFromZipcode($zipCode);
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
     }
-    
-    public function testNormalizeResponseWebManiaDefaultUsage()
-    {
-        $expected = [
-            "status" => true,
-            "address" => "Rua Luís Asson",
-            "district" => "Vila Buenos Aires",
-            "city" => "São Paulo",
-            "state" => "SP",
-            "api" => "WebMania"
-        ];
-        
-        $address = [
-            "endereco" => "Rua Luís Asson",
-            "bairro" => "Vila Buenos Aires",
-            "cidade" => "São Paulo",
-            "uf" => "SP",
-        ];
 
+    /**
+     * @dataProvider getMockInputOutput
+     */
+    public function testNormalizeResponseWebManiaDefaultUsage(array $address, array $expected)
+    {
         $webMania = new WebMania($this->webManiaCredential);
         
         $reflect = new \ReflectionObject($webMania);
@@ -60,5 +39,45 @@ class WebManiaTest extends TestCase
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
+    }
+    
+    /**
+     * Returns all data to be used on tests
+     */
+    public function getCepDefaultWithOutput(){
+        return [
+            [
+                "03624-0-10",
+                [
+                    "status" => true,
+                    "address" => "Rua Luís Asson",
+                    "district" => "Vila Buenos Aires",
+                    "city" => "São Paulo",
+                    "state" => "SP",
+                    "api" => "WebMania"
+                ]
+            ]
+        ];
+    }
+    
+    public function getMockInputOutput(){
+        return [
+            [
+                [
+                    "endereco" => "Rua Luís Asson",
+                    "bairro" => "Vila Buenos Aires",
+                    "cidade" => "São Paulo",
+                    "uf" => "SP",
+                ],
+                [
+                    "status" => true,
+                    "address" => "Rua Luís Asson",
+                    "district" => "Vila Buenos Aires",
+                    "city" => "São Paulo",
+                    "state" => "SP",
+                    "api" => "WebMania"
+                ]
+            ]
+        ];
     }
 }

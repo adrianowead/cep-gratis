@@ -7,19 +7,11 @@ use Wead\ZipCode\WS\WideNet;
 
 class WideNetTest extends TestCase
 {
-    public function testGetAddressFromZipcodeWideNetDefaultUsage()
+    /**
+     * @dataProvider getCepDefaultWithOutput
+     */
+    public function testGetAddressFromZipcodeWideNetDefaultUsage(string $zipCode, array $expected)
     {
-        $zipCode = '03624-0-10';
-
-        $expected = [
-            "status" => true,
-            "address" => "Rua Luís Asson",
-            "district" => "Vila Buenos Aires",
-            "city" => "São Paulo",
-            "state" => "SP",
-            "api" => "WideNet"
-        ];
-
         $wideNet = new WideNet();
         $out = $wideNet->getAddressFromZipcode($zipCode);
 
@@ -27,24 +19,11 @@ class WideNetTest extends TestCase
         self::assertEquals($expected, $out);
     }
     
-    public function testNormalizeResponseWideNetDefaultUsage()
+    /**
+     * @dataProvider getMockInputOutput
+     */
+    public function testNormalizeResponseWideNetDefaultUsage(array $address, array $expected)
     {
-        $expected = [
-            "status" => true,
-            "address" => "Rua Luís Asson",
-            "district" => "Vila Buenos Aires",
-            "city" => "São Paulo",
-            "state" => "SP",
-            "api" => "WideNet"
-        ];
-        
-        $address = [
-            "address" => "Rua Luís Asson",
-            "district" => "Vila Buenos Aires",
-            "city" => "São Paulo",
-            "state" => "SP",
-        ];
-
         $wideNet = new WideNet();
         
         $reflect = new \ReflectionObject($wideNet);
@@ -55,5 +34,45 @@ class WideNetTest extends TestCase
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
+    }
+    
+    /**
+     * Returns all data to be used on tests
+     */
+    public function getCepDefaultWithOutput(){
+        return [
+            [
+                "03624-0-10",
+                [
+                    "status" => true,
+                    "address" => "Rua Luís Asson",
+                    "district" => "Vila Buenos Aires",
+                    "city" => "São Paulo",
+                    "state" => "SP",
+                    "api" => "WideNet"
+                ]
+            ]
+        ];
+    }
+    
+    public function getMockInputOutput(){
+        return [
+            [
+                [
+                    "address" => "Rua Luís Asson",
+                    "district" => "Vila Buenos Aires",
+                    "city" => "São Paulo",
+                    "state" => "SP",
+                ],
+                [
+                    "status" => true,
+                    "address" => "Rua Luís Asson",
+                    "district" => "Vila Buenos Aires",
+                    "city" => "São Paulo",
+                    "state" => "SP",
+                    "api" => "WideNet"
+                ]
+            ]
+        ];
     }
 }

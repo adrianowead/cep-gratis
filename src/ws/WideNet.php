@@ -54,7 +54,7 @@ class WideNet
 
     private function normalizeResponse($address)
     {
-        if (sizeof($address) > 0 && $address['status'] == 1) {
+        if (sizeof($address) > 0 && isset($address["address"])) {
             return [
                 "status" => true,
                 "address" => $address["address"],

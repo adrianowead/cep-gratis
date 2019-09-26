@@ -18,11 +18,11 @@ use Wead\ZipCode\WS\WebMania;
 
 class Search
 {
-    private $listApiTest = [
-        'getFromViaCep',
-        'getFromWebMania',
-        'getFromWideNet',
-        'getFromCepLa',
+    private $countAttempts = [
+        'ViaCep' => 0,
+        'WebMania' => 0,
+        'WideNet' => 0,
+        'CepLa' => 0,
     ];
 
     private $credential = [
@@ -43,30 +43,60 @@ class Search
     {
         $found = false;
         $errors = [];
+        
+        // on first exec shuffe
+        // preserve keys
+        uksort($this->countAttempts, function ($ka, $kb) {
+            return rand() > rand() ? 1 : 0;
+        });
 
-        // shuffle to not exceed api limits
-        shuffle($this->listApiTest);
+        while (!$found) {
+            // lower attempts
+            asort($this->countAttempts);
 
-        foreach ($this->listApiTest as $f) {
-            if (!$found) {
-                try {
-                    $found = call_user_func([__CLASS__, $f], $zipCode);
-                } catch (\Exception $e) {
-                    $errors[$f] = $e->getMessage();
+            $api = array_keys($this->countAttempts)[0];
+            
+            try {
+                switch ($api) {
+                    case 'ViaCep':
+                        $found = $this->getFromViaCep($zipCode);
+                        break;
 
-                    if (sizeof($errors) >= sizeof($this->listApiTest)) {
-                        $msg = "";
+                    case 'WebMania':
+                        $found = $this->getFromWebMania($zipCode);
+                        break;
 
-                        foreach ($errors as $i => $m) {
-                            $msg .= "[{$i}]: {$m}" . PHP_EOL . PHP_EOL;
-                        }
+                    case 'WideNet':
+                        $found = $this->getFromWideNet($zipCode);
+                        break;
 
-                        throw new \Exception(
-                            "Error to get address by zipcode: " .
-                            PHP_EOL .
-                            $msg
-                        );
+                    case 'CepLa':
+                        $found = $this->getFromCepLa($zipCode);
+                        break;
+
+                    default:
+                        $found = false;
+                        break;
+                }
+                
+                $found = is_array($found) ? $found['status'] === true ? $found : false : false;
+
+                $this->countAttempts[$api]++;
+            } catch (\Exception $e) {
+                $errors[$api] = $e->getMessage();
+
+                if (sizeof($errors) >= sizeof($this->countAttempts)) {
+                    $msg = "";
+
+                    foreach ($errors as $i => $m) {
+                        $msg .= "[{$i}]: {$m}" . PHP_EOL . PHP_EOL;
                     }
+
+                    throw new \Exception(
+                        "Error to get address by zipcode: " .
+                        PHP_EOL .
+                        $msg
+                    );
                 }
             }
         }

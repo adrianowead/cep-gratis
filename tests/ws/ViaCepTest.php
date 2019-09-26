@@ -39,7 +39,8 @@ class ViaCepTest extends TestCase
     /**
      * Returns all data to be used on tests
      */
-    public function getCepDefaultWithOutput(){
+    public function getCepDefaultWithOutput()
+    {
         return [
             [
                 "03624-0-10",
@@ -55,7 +56,8 @@ class ViaCepTest extends TestCase
         ];
     }
     
-    public function getMockInputOutput(){
+    public function getMockInputOutput()
+    {
         return [
             [
                 [

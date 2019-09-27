@@ -4,15 +4,15 @@ build:
                 version: 7.2
     nodes:
         coverage:
-      tests:
-        override:
-          - command: composer test
-            coverage:
-              file: tests/_reports/logs/clover.xml
+          tests:
+            override:
+              - command: composer test
+                coverage:
+                  file: tests/_reports/logs/clover.xml
 
-              # These formats are supported:
-              # clover, cobertura, jacoco, python-cc, ruby-cc, go-cc, lcov
-              format: clover
+                  # These formats are supported:
+                  # clover, cobertura, jacoco, python-cc, ruby-cc, go-cc, lcov
+                  format: clover
         analysis:
             tests:
                 override:

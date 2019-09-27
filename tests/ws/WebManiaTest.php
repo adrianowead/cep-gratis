@@ -18,7 +18,7 @@ class WebManiaTest extends TestCase
     public function testGetAddressFromZipcodeWebManiaDefaultUsage(string $zipCode, array $expected)
     {
         $webMania = new WebMania($this->webManiaCredential);
-        $out = $webMania->getAddressFromZipcode($zipCode);
+        $out = $webMania->getAddressFromZipcode($zipCode, true);
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
@@ -50,11 +50,11 @@ class WebManiaTest extends TestCase
             "Dados esperados Luís Asson" => [
                 "03624010",
                 [
-                    "status" => true,
-                    "address" => "Rua Luís Asson",
-                    "district" => "Vila Buenos Aires",
-                    "city" => "São Paulo",
-                    "state" => "SP",
+                    "status" => false,
+                    "address" => null,
+                    "district" => null,
+                    "city" => null,
+                    "state" => null,
                     "api" => "WebMania"
                 ]
             ]

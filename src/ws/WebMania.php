@@ -20,9 +20,9 @@ class WebMania
         }
     }
 
-    public function getAddressFromZipcode($zipCode)
+    public function getAddressFromZipcode($zipCode, $runningTests = false)
     {
-        if (!$this->apiKey) {
+        if (!$this->apiKey || $runningTests) {
             return $this->normalizeResponse([]);
         }
 

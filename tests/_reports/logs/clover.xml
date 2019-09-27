@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1569606457">
-  <project timestamp="1569606457">
+<coverage generated="1569606828">
+  <project timestamp="1569606828">
     <package name="Wead\ZipCode\Exceptions">
       <file name="/Users/adriano/desenvolvimento/cep-gratis/src/Exceptions/ZipCodeNotFoundException.php">
         <class name="Wead\ZipCode\Exceptions\ZipCodeNotFoundException" namespace="Wead\ZipCode\Exceptions">
@@ -32,9 +32,9 @@
         <line num="52" type="stmt" count="2"/>
         <line num="53" type="stmt" count="2"/>
         <line num="54" type="stmt" count="2"/>
-        <line num="56" type="stmt" count="1"/>
-        <line num="57" type="stmt" count="1"/>
-        <line num="58" type="stmt" count="1"/>
+        <line num="56" type="stmt" count="2"/>
+        <line num="57" type="stmt" count="2"/>
+        <line num="58" type="stmt" count="2"/>
         <line num="60" type="stmt" count="1"/>
         <line num="61" type="stmt" count="1"/>
         <line num="62" type="stmt" count="1"/>
@@ -42,7 +42,7 @@
         <line num="65" type="stmt" count="1"/>
         <line num="66" type="stmt" count="1"/>
         <line num="69" type="stmt" count="2"/>
-        <line num="70" type="stmt" count="1"/>
+        <line num="70" type="stmt" count="2"/>
         <line num="75" type="stmt" count="2"/>
         <line num="76" type="stmt" count="1"/>
         <line num="79" type="stmt" count="1"/>
@@ -50,10 +50,10 @@
         <line num="84" type="stmt" count="3"/>
         <line num="85" type="stmt" count="3"/>
         <line num="87" type="stmt" count="3"/>
-        <line num="90" type="method" name="getFromWebMania" visibility="private" complexity="2" crap="2" count="2"/>
-        <line num="92" type="stmt" count="2"/>
-        <line num="93" type="stmt" count="2"/>
-        <line num="95" type="stmt" count="2"/>
+        <line num="90" type="method" name="getFromWebMania" visibility="private" complexity="2" crap="2" count="3"/>
+        <line num="92" type="stmt" count="3"/>
+        <line num="93" type="stmt" count="3"/>
+        <line num="95" type="stmt" count="3"/>
         <line num="98" type="method" name="getFromWideNet" visibility="private" complexity="2" crap="2" count="2"/>
         <line num="100" type="stmt" count="2"/>
         <line num="101" type="stmt" count="2"/>
@@ -90,7 +90,7 @@
         <line num="44" type="stmt" count="3"/>
         <line num="45" type="stmt" count="3"/>
         <line num="49" type="stmt" count="1"/>
-        <metrics loc="57" ncloc="55" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="18" elements="20" coveredelements="20"/>
+        <metrics loc="58" ncloc="56" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="18" elements="20" coveredelements="20"/>
       </file>
       <file name="/Users/adriano/desenvolvimento/cep-gratis/src/ws/ViaCep.php">
         <class name="Wead\ZipCode\WS\ViaCep" namespace="Wead\ZipCode\WS">
@@ -116,43 +116,43 @@
         <line num="44" type="stmt" count="4"/>
         <line num="45" type="stmt" count="4"/>
         <line num="49" type="stmt" count="1"/>
-        <metrics loc="57" ncloc="55" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="18" elements="20" coveredelements="20"/>
+        <metrics loc="58" ncloc="56" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="18" elements="20" coveredelements="20"/>
       </file>
       <file name="/Users/adriano/desenvolvimento/cep-gratis/src/ws/WebMania.php">
         <class name="Wead\ZipCode\WS\WebMania" namespace="Wead\ZipCode\WS">
-          <metrics complexity="9" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="27" elements="30" coveredelements="30"/>
+          <metrics complexity="10" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="27" elements="30" coveredelements="30"/>
         </class>
-        <line num="13" type="method" name="__construct" visibility="public" complexity="4" crap="4" count="4"/>
-        <line num="15" type="stmt" count="4"/>
-        <line num="16" type="stmt" count="4"/>
+        <line num="13" type="method" name="__construct" visibility="public" complexity="4" crap="4" count="5"/>
+        <line num="15" type="stmt" count="5"/>
+        <line num="16" type="stmt" count="5"/>
         <line num="17" type="stmt" count="3"/>
         <line num="18" type="stmt" count="3"/>
-        <line num="21" type="stmt" count="4"/>
-        <line num="23" type="method" name="getAddressFromZipcode" visibility="public" complexity="2" crap="2" count="3"/>
-        <line num="25" type="stmt" count="3"/>
-        <line num="26" type="stmt" count="1"/>
-        <line num="29" type="stmt" count="2"/>
-        <line num="32" type="stmt" count="2"/>
-        <line num="35" type="stmt" count="2"/>
-        <line num="37" type="stmt" count="2"/>
-        <line num="38" type="stmt" count="2"/>
-        <line num="40" type="stmt" count="2"/>
-        <line num="41" type="stmt" count="2"/>
-        <line num="43" type="stmt" count="2"/>
-        <line num="44" type="stmt" count="2"/>
-        <line num="50" type="stmt" count="2"/>
-        <line num="51" type="stmt" count="2"/>
-        <line num="53" type="stmt" count="2"/>
-        <line num="56" type="method" name="normalizeResponse" visibility="private" complexity="3" crap="3" count="4"/>
-        <line num="58" type="stmt" count="4"/>
-        <line num="60" type="stmt" count="3"/>
-        <line num="61" type="stmt" count="3"/>
-        <line num="62" type="stmt" count="3"/>
-        <line num="63" type="stmt" count="3"/>
-        <line num="64" type="stmt" count="3"/>
-        <line num="65" type="stmt" count="3"/>
-        <line num="69" type="stmt" count="1"/>
-        <metrics loc="78" ncloc="76" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="27" elements="30" coveredelements="30"/>
+        <line num="21" type="stmt" count="5"/>
+        <line num="23" type="method" name="getAddressFromZipcode" visibility="public" complexity="3" crap="3" count="4"/>
+        <line num="25" type="stmt" count="4"/>
+        <line num="26" type="stmt" count="3"/>
+        <line num="29" type="stmt" count="1"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="35" type="stmt" count="1"/>
+        <line num="37" type="stmt" count="1"/>
+        <line num="38" type="stmt" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="50" type="stmt" count="1"/>
+        <line num="51" type="stmt" count="1"/>
+        <line num="53" type="stmt" count="1"/>
+        <line num="56" type="method" name="normalizeResponse" visibility="private" complexity="3" crap="3" count="5"/>
+        <line num="58" type="stmt" count="5"/>
+        <line num="60" type="stmt" count="2"/>
+        <line num="61" type="stmt" count="2"/>
+        <line num="62" type="stmt" count="2"/>
+        <line num="63" type="stmt" count="2"/>
+        <line num="64" type="stmt" count="2"/>
+        <line num="65" type="stmt" count="2"/>
+        <line num="69" type="stmt" count="3"/>
+        <metrics loc="77" ncloc="75" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="27" elements="30" coveredelements="30"/>
       </file>
       <file name="/Users/adriano/desenvolvimento/cep-gratis/src/ws/WideNet.php">
         <class name="Wead\ZipCode\WS\WideNet" namespace="Wead\ZipCode\WS">
@@ -179,9 +179,9 @@
         <line num="47" type="stmt" count="3"/>
         <line num="48" type="stmt" count="3"/>
         <line num="52" type="stmt" count="1"/>
-        <metrics loc="60" ncloc="58" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="19" elements="21" coveredelements="21"/>
+        <metrics loc="61" ncloc="59" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="19" elements="21" coveredelements="21"/>
       </file>
     </package>
-    <metrics files="6" loc="381" ncloc="364" classes="6" methods="17" coveredmethods="17" conditionals="0" coveredconditionals="0" statements="122" coveredstatements="122" elements="139" coveredelements="139"/>
+    <metrics files="6" loc="383" ncloc="366" classes="6" methods="17" coveredmethods="17" conditionals="0" coveredconditionals="0" statements="122" coveredstatements="122" elements="139" coveredelements="139"/>
   </project>
 </coverage>

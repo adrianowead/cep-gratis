@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1569607179">
-  <project timestamp="1569607179">
+<coverage generated="1569607296">
+  <project timestamp="1569607296">
     <package name="Wead\ZipCode\Exceptions">
       <file name="/Users/adriano/desenvolvimento/cep-gratis/src/Exceptions/ZipCodeNotFoundException.php">
         <class name="Wead\ZipCode\Exceptions\ZipCodeNotFoundException" namespace="Wead\ZipCode\Exceptions">
@@ -17,7 +17,7 @@
     <package name="Wead\ZipCode">
       <file name="/Users/adriano/desenvolvimento/cep-gratis/src/Search.php">
         <class name="Wead\ZipCode\Search" namespace="Wead\ZipCode">
-          <metrics complexity="21" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="37" elements="43" coveredelements="43"/>
+          <metrics complexity="18" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="37" elements="43" coveredelements="43"/>
         </class>
         <line num="36" type="method" name="setCredential" visibility="public" complexity="3" crap="3" count="2"/>
         <line num="38" type="stmt" count="2"/>
@@ -46,7 +46,7 @@
         <line num="75" type="stmt" count="2"/>
         <line num="76" type="stmt" count="1"/>
         <line num="79" type="stmt" count="1"/>
-        <line num="82" type="method" name="getFromViaCep" visibility="private" complexity="2" crap="2" count="2"/>
+        <line num="82" type="method" name="getFromViaCep" visibility="private" complexity="1" crap="1" count="2"/>
         <line num="84" type="stmt" count="2"/>
         <line num="85" type="stmt" count="2"/>
         <line num="87" type="stmt" count="2"/>
@@ -54,15 +54,15 @@
         <line num="92" type="stmt" count="2"/>
         <line num="93" type="stmt" count="2"/>
         <line num="95" type="stmt" count="2"/>
-        <line num="98" type="method" name="getFromWideNet" visibility="private" complexity="2" crap="2" count="3"/>
+        <line num="98" type="method" name="getFromWideNet" visibility="private" complexity="1" crap="1" count="3"/>
         <line num="100" type="stmt" count="3"/>
         <line num="101" type="stmt" count="3"/>
         <line num="103" type="stmt" count="3"/>
-        <line num="106" type="method" name="getFromCepLa" visibility="private" complexity="2" crap="2" count="2"/>
+        <line num="106" type="method" name="getFromCepLa" visibility="private" complexity="1" crap="1" count="2"/>
         <line num="108" type="stmt" count="2"/>
         <line num="109" type="stmt" count="2"/>
         <line num="111" type="stmt" count="2"/>
-        <metrics loc="112" ncloc="103" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="37" elements="43" coveredelements="43"/>
+        <metrics loc="113" ncloc="104" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="37" elements="43" coveredelements="43"/>
       </file>
     </package>
     <package name="Wead\ZipCode\WS">
@@ -182,6 +182,6 @@
         <metrics loc="61" ncloc="59" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="19" elements="21" coveredelements="21"/>
       </file>
     </package>
-    <metrics files="6" loc="383" ncloc="366" classes="6" methods="17" coveredmethods="16" conditionals="0" coveredconditionals="0" statements="122" coveredstatements="110" elements="139" coveredelements="126"/>
+    <metrics files="6" loc="384" ncloc="367" classes="6" methods="17" coveredmethods="16" conditionals="0" coveredconditionals="0" statements="122" coveredstatements="110" elements="139" coveredelements="126"/>
   </project>
 </coverage>

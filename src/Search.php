@@ -81,7 +81,7 @@ class Search
 
     private function getFromViaCep($zipCode)
     {
-        $zip = new ViaCep(isset($this->credential['viaCep']) ? $this->credential['viaCep'] : []);
+        $zip = new ViaCep();
         $zip = $zip->getAddressFromZipcode($zipCode);
 
         return $zip;
@@ -97,7 +97,7 @@ class Search
 
     private function getFromWideNet($zipCode)
     {
-        $zip = new WideNet(isset($this->credential['wideNet']) ? $this->credential['wideNet'] : []);
+        $zip = new WideNet();
         $zip = $zip->getAddressFromZipcode($zipCode);
 
         return $zip;
@@ -105,7 +105,7 @@ class Search
 
     private function getFromCepLa($zipCode)
     {
-        $zip = new CepLa(isset($this->credential['cepLa']) ? $this->credential['cepLa'] : []);
+        $zip = new CepLa();
         $zip = $zip->getAddressFromZipcode($zipCode);
 
         return $zip;

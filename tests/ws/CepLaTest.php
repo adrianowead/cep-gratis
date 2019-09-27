@@ -2,8 +2,8 @@
 
 namespace Wead\ZipCode\Tests\WS;
 
-use PHPUnit\Framework\TestCase;
 use Wead\ZipCode\WS\CepLa;
+use PHPUnit\Framework\TestCase;
 
 class CepLaTest extends TestCase
 {

@@ -1,3 +1,6 @@
+Zip Code Not Found Exception Text (Wead\ZipCode\Tests\Exceptions\ZipCodeNotFoundExceptionText)
+ [x] To string
+
 Search (Wead\ZipCode\Tests\Search)
  [x] Set credential
  [x] Get address from zipcode default usage with data set "Cep Luís Asson"

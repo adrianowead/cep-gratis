@@ -3,22 +3,14 @@
 namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
-use Wead\ZipCode\Exceptions\ZipCodeNotFoundException;
 
 class CepLa
 {
     private $endPoint = "http://cep.la";
-    private $apiKey = null;
-    private $apiSecret = null;
 
     public function __construct($credential = [])
     {
-        if (is_array($credential)) {
-            if (isset($credential['apiKey']) && isset($credential['apiSecret'])) {
-                $this->apiKey = $credential['apiKey'];
-                $this->apiSecret = $credential['apiSecret'];
-            }
-        }
+        // does not need credentials, yet
     }
 
     public function getAddressFromZipcode($zipCode)
@@ -31,18 +23,14 @@ class CepLa
 
         $client = new Client(['base_uri' => "{$this->endPoint}/{$zipCode}"]);
 
-        try {
-            $response = $client->get(
-                '',
-                [
+        $response = $client->get(
+            '',
+            [
                 'headers' => $headers,
                 'connect_timeout' => 5, // seconds
                 'debug' => false,
                 ]
-            );
-        } catch (\GuzzleHttp\Exception\ClientException $e) {
-            throw new ZipCodeNotFoundException("CepLa request error to find zipcode: {$zipCode}");
-        }
+        );
 
         $response = $response->getBody()->getContents();
         $response = json_decode($response);

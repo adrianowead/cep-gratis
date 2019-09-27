@@ -3,7 +3,6 @@
 namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
-use Wead\ZipCode\Exceptions\ZipCodeNotFoundException;
 
 class WebMania
 {
@@ -35,22 +34,18 @@ class WebMania
 
         $client = new Client(['base_uri' => "{$this->endPoint}/{$zipCode}/"]);
 
-        try {
-            $response = $client->get(
-                '',
-                [
-                'headers' => $headers,
-                'connect_timeout' => 5, // seconds
-                'query' => [
-                    'app_key' => $this->apiKey,
-                    'app_secret' => $this->apiSecret,
-                ],
-                'debug' => false,
-                ]
-            );
-        } catch (\GuzzleHttp\Exception\ClientException $e) {
-            throw new ZipCodeNotFoundException("WebMania request error to find zipcode: {$zipCode}");
-        }
+        $response = $client->get(
+            '',
+            [
+            'headers' => $headers,
+            'connect_timeout' => 5, // seconds
+            'query' => [
+                'app_key' => $this->apiKey,
+                'app_secret' => $this->apiSecret,
+            ],
+            'debug' => false,
+            ]
+        );
 
         $response = $response->getBody()->getContents();
         $response = json_decode($response);

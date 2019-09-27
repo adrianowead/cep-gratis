@@ -3,22 +3,14 @@
 namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
-use Wead\ZipCode\Exceptions\ZipCodeNotFoundException;
 
 class WideNet
 {
     private $endPoint = "http://apps.widenet.com.br/busca-cep/api/cep.json";
-    private $apiKey = null;
-    private $apiSecret = null;
 
     public function __construct($credential = [])
     {
-        if (is_array($credential)) {
-            if (isset($credential['apiKey']) && isset($credential['apiSecret'])) {
-                $this->apiKey = $credential['apiKey'];
-                $this->apiSecret = $credential['apiSecret'];
-            }
-        }
+        // does not need credentials, yet
     }
 
     public function getAddressFromZipcode($zipCode)
@@ -31,21 +23,17 @@ class WideNet
 
         $client = new Client(['base_uri' => $this->endPoint]);
 
-        try {
-            $response = $client->get(
-                '',
-                [
-                    'headers' => $headers,
-                    'connect_timeout' => 5, // seconds
-                    'query' => [
-                        'code' => $zipCode
-                    ],
-                    'debug' => false
-                ]
-            );
-        } catch (\GuzzleHttp\Exception\ClientException $e) {
-            throw new ZipCodeNotFoundException("WebMania request error to find zipcode: {$zipCode}");
-        }
+        $response = $client->get(
+            '',
+            [
+                'headers' => $headers,
+                'connect_timeout' => 5, // seconds
+                'query' => [
+                    'code' => $zipCode
+                ],
+                'debug' => false
+            ]
+        );
 
         $response = $response->getBody()->getContents();
         $response = json_decode($response);

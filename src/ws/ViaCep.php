@@ -3,9 +3,23 @@
 namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
+use Wead\ZipCode\Exceptions\ZipCodeNotFoundException;
 
-class ViaCep{
+class ViaCep
+{
     private $endPoint = "https://viacep.com.br/ws/";
+    private $apiKey = null;
+    private $apiSecret = null;
+
+    public function __construct($credential = [])
+    {
+        if (is_array($credential)) {
+            if (isset($credential['apiKey']) && isset($credential['apiSecret'])) {
+                $this->apiKey = $credential['apiKey'];
+                $this->apiSecret = $credential['apiSecret'];
+            }
+        }
+    }
 
     public function getAddressFromZipcode($zipCode)
     {
@@ -18,13 +32,16 @@ class ViaCep{
         $client = new Client(['base_uri' => "{$this->endPoint}/{$zipCode}/"]);
 
         try {
-            $response = $client->get('json', [
+            $response = $client->get(
+                'json',
+                [
                 'headers' => $headers,
                 'connect_timeout' => 5, // seconds
                 'debug' => false,
-            ]);
+                ]
+            );
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            throw new \Exception("ViaCep request error: {$e->getResponse()->getBody()->getContents()}");
+            throw new ZipCodeNotFoundException("ViaCep request error to find zipcode: {$zipCode}");
         }
 
         $response = $response->getBody()->getContents();
@@ -33,10 +50,9 @@ class ViaCep{
         return $this->normalizeResponse((array)$response);
     }
 
-    private function normalizeResponse( $address )
+    private function normalizeResponse($address)
     {
-        if( sizeof($address) > 0 && !isset($address["error"]) )
-        {
+        if (sizeof($address) > 0 && !isset($address["erro"])) {
             return [
                 "status" => true,
                 "address" => $address["logradouro"],
@@ -45,9 +61,7 @@ class ViaCep{
                 "state" => $address["uf"],
                 "api" => "ViaCep"
             ];
-        }
-        else
-        {
+        } else {
             return [
                 "status" => false,
                 "address" => null,

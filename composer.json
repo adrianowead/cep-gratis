@@ -23,5 +23,36 @@
             "Wead\\ZipCode\\WS\\": "src/ws"
         },
         "files": []
-    }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "phan/phan": "^2.2",
+        "phpunit/phpunit": "^8"
+    },
+    "scripts": {
+        "psr12": "phpcs --standard=PSR12 --colors src/",
+        "psr12-fix-src": "phpcbf --standard=PSR12 --colors src/",
+        "psr12-fix-tests": "phpcbf --standard=PSR12 --colors tests/",
+        "phan": "phan --allow-polyfill-parser",
+        "test": "phpunit --colors=always",
+        "psr12-fix": [
+            "@psr12-fix-src",
+            "@psr12-fix-tests"
+        ],
+        "check": [
+            "@phan",
+            "@psr12-fix",
+            "@psr12",
+            "@test"
+        ]
+    },
+    "scripts-descriptions": {
+        "psr12": "Valida se o projeto está seguindo os padrões da PSR-12",
+        "psr12-fix": "Executa pequenas correções automáticas para padronização na PSR-12",
+        "phan": "Executa uma validação no código, em busca de erros de implementação",
+        "check": "Executa as verificações do código em sequência (Phan, PSR12-FIX, PSR12)"
+    },
+    "bin": [
+        "buscar-cep"
+    ]
 }

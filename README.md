@@ -5,6 +5,10 @@ Consulta online à diversos serviços gratuitos de CEP online.
 [![Release](https://img.shields.io/packagist/v/wead/cep-gratis)]()
 [![Building](https://img.shields.io/circleci/build/github/adrianowead/cep-gratis?token=master)]()
 [![Size](https://img.shields.io/github/repo-size/adrianowead/cep-gratis)]()
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/adrianowead/cep-gratis/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/adrianowead/cep-gratis/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/adrianowead/cep-gratis/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/adrianowead/cep-gratis/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/adrianowead/cep-gratis/badges/build.png?b=master)](https://scrutinizer-ci.com/g/adrianowead/cep-gratis/build-status/master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/adrianowead/cep-gratis/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 ## Necessário
 [![Supported PHP version](https://img.shields.io/badge/PHP->%3D%205.6-blue.svg)]()

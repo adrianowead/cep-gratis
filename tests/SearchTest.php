@@ -67,7 +67,7 @@ class SearchTest extends TestCase
     }
     
     /**
-     * @dataProvider getCepDefaultWithOutput
+     * @dataProvider getCepDefaultWithOutputWebania
      */
     public function testGetAddressFromWebManiaDirect(string $zipCode, array $expected)
     {
@@ -81,7 +81,7 @@ class SearchTest extends TestCase
         $method = $reflector->getMethod('getFromWebMania');
         $method->setAccessible(true); // set accessible private method
 
-        $out = $method->invoke($search, $zipCode);
+        $out = $method->invoke($search, $zipCode, true);
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
@@ -174,6 +174,25 @@ class SearchTest extends TestCase
                     "district" => "Vila Buenos Aires",
                     "city" => "São Paulo",
                     "state" => "SP"
+                ]
+            ]
+        ];
+    }
+    
+    /**
+     * Returns all data to be used on tests
+     */
+    public function getCepDefaultWithOutputWebania()
+    {
+        return [ // first level is each test
+            "Dados esperados Luís Asson" => [ // second level is each param to test
+                "036-24010",
+                [
+                    "status" => false,
+                    "address" => null,
+                    "district" => null,
+                    "city" => null,
+                    "state" => null
                 ]
             ]
         ];

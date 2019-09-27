@@ -87,10 +87,10 @@ class Search
         return $zip;
     }
 
-    private function getFromWebMania($zipCode)
+    private function getFromWebMania($zipCode, $runningTest = false)
     {
         $zip = new WebMania(isset($this->credential['webMania']) ? $this->credential['webMania'] : []);
-        $zip = $zip->getAddressFromZipcode($zipCode);
+        $zip = $zip->getAddressFromZipcode($zipCode, $runningTest);
 
         return $zip;
     }

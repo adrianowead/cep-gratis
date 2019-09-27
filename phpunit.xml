@@ -12,4 +12,10 @@
     <logging>
         <log type="testdox-text" target="testes-executados.txt"/>
     </logging>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
 </phpunit>

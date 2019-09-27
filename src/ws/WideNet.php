@@ -8,11 +8,6 @@ class WideNet
 {
     private $endPoint = "http://apps.widenet.com.br/busca-cep/api/cep.json";
 
-    public function __construct($credential = [])
-    {
-        // does not need credentials, yet
-    }
-
     public function getAddressFromZipcode($zipCode)
     {
         $zipCode = preg_replace('/[^0-9]/im', '', $zipCode);

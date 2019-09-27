@@ -8,11 +8,6 @@ class ViaCep
 {
     private $endPoint = "https://viacep.com.br/ws/";
 
-    public function __construct($credential = [])
-    {
-        // does not need credentials, yet
-    }
-
     public function getAddressFromZipcode($zipCode)
     {
         $zipCode = preg_replace('/[^0-9]/im', '', $zipCode);

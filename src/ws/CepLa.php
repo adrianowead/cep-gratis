@@ -8,11 +8,6 @@ class CepLa
 {
     private $endPoint = "http://cep.la";
 
-    public function __construct($credential = [])
-    {
-        // does not need credentials, yet
-    }
-
     public function getAddressFromZipcode($zipCode)
     {
         $zipCode = preg_replace('/[^0-9]/im', '', $zipCode);

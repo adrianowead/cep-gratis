@@ -3,6 +3,8 @@
 Consulta online à diversos serviços gratuitos de CEP online.
 
 [![Release](https://img.shields.io/packagist/v/wead/cep-gratis)]()
+[![Building](https://img.shields.io/circleci/build/github/adrianowead/cep-gratis?token=master)]()
+[![Size](https://img.shields.io/github/repo-size/adrianowead/cep-gratis)]()
 
 ## Necessário
 [![Supported PHP version](https://img.shields.io/badge/PHP->%3D%205.6-blue.svg)]()

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Classe principal para as buscas de CEP
  *
@@ -33,6 +34,14 @@ class Search
         ]
     ];
 
+    private $maxAttempts = 5;
+    private $countAttempts = 0;
+
+    public function setMaxAttempts($maxAttempts = 5)
+    {
+        return $this->maxAttempts = (int) $maxAttempts;
+    }
+
     public function setCredential($service, $credential = [])
     {
         if (is_string($service) && is_array($credential)) {
@@ -42,8 +51,29 @@ class Search
 
     public function getAddressFromZipcode($zipCode)
     {
+        try {
+            $found = $this->attemptSearch($zipCode);
+
+            if (!$found['address']) {
+                $this->countAttempts++;
+
+                return $this->getAddressFromZipcode($zipCode);
+            }
+
+            return $found;
+        } catch (\Exception $e) {
+            if ($this->countAttempts < $this->maxAttempts) {
+                $this->countAttempts++;
+
+                return $this->getAddressFromZipcode($zipCode);
+            }
+        }
+    }
+
+    private function attemptSearch($zipCode)
+    {
         $found = false;
-        
+
         shuffle($this->listApi);
 
         foreach ($this->listApi as $api) {
@@ -65,8 +95,8 @@ class Search
                         $found = $this->getFromCepLa($zipCode);
                         break;
                 }
-                
-                if (!isset($found['address']) || !$found['status']) {
+
+                if (!isset($found['address']) || !$found['status'] || !$found['address'] || strlen(trim($found['address'])) == 0) {
                     $found = false;
                 }
             }

@@ -54,7 +54,7 @@ class Search
         try {
             $found = $this->attemptSearch($zipCode);
 
-            if (!$found['address']) {
+            if (!$found['city']) {
                 $this->countAttempts++;
 
                 return $this->getAddressFromZipcode($zipCode);
@@ -96,7 +96,7 @@ class Search
                         break;
                 }
 
-                if (!isset($found['address']) || !$found['status'] || !$found['address'] || strlen(trim($found['address'])) == 0) {
+                if (!isset($found['city']) || !$found['status'] || !$found['city'] || strlen(trim($found['city'])) == 0) {
                     $found = false;
                 }
             }

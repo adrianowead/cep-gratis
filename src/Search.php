@@ -54,11 +54,14 @@ class Search
         try {
             $found = $this->attemptSearch($zipCode);
 
-            if (!$found['address']) {
+            if (!$found['city']) {
                 $this->countAttempts++;
 
                 return $this->getAddressFromZipcode($zipCode);
             }
+
+            $found['address'] = strlen(trim($found['address'])) == 0 ? "Não encontrado" : $found['address'];
+            $found['district'] = strlen(trim($found['district'])) == 0 ? "Não encontrado" : $found['district'];
 
             return $found;
         } catch (\Exception $e) {
@@ -66,6 +69,8 @@ class Search
                 $this->countAttempts++;
 
                 return $this->getAddressFromZipcode($zipCode);
+            } else {
+                throw new \Exception("Not Found data for this cep");
             }
         }
     }
@@ -96,7 +101,7 @@ class Search
                         break;
                 }
 
-                if (!isset($found['address']) || !$found['status'] || !$found['address'] || strlen(trim($found['address'])) == 0) {
+                if (!isset($found['city']) || !$found['status'] || !$found['city'] || strlen(trim($found['city'])) == 0) {
                     $found = false;
                 }
             }

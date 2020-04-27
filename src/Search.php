@@ -60,6 +60,9 @@ class Search
                 return $this->getAddressFromZipcode($zipCode);
             }
 
+            $found['address'] = strlen(trim($found['address'])) == 0 ? "Não encontrado" : $found['address'];
+            $found['district'] = strlen(trim($found['district'])) == 0 ? "Não encontrado" : $found['district'];
+
             return $found;
         } catch (\Exception $e) {
             if ($this->countAttempts < $this->maxAttempts) {

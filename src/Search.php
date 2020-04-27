@@ -69,6 +69,8 @@ class Search
                 $this->countAttempts++;
 
                 return $this->getAddressFromZipcode($zipCode);
+            } else {
+                throw new \Exception("Not Found data for this cep");
             }
         }
     }

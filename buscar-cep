@@ -18,11 +18,17 @@ $webMania = [
 $search = new Search;
 $search->setCredential('webMania', $webMania);
 
-//$zipCode = '03624010'; //complete
-$zipCode = '95520000'; //without address
+$zipCode = '03624010'; //complete
+//$zipCode = '95520000'; //without address
+//$zipCode = '90000000'; //Not foundable data
 
 if( isset($argv) && sizeof($argv) > 1 ){
     $zipCode = isset($argv[1]) ? preg_replace('/[^0-9]/im', '', $argv[1]) : $zipCode;
 }
 
-print_r($search->getAddressFromZipcode($zipCode));
+try {
+    print_r(["resp" => $search->getAddressFromZipcode($zipCode)]);
+} catch (Exception $exp) {
+    print_r($exp);
+}
+

@@ -28,7 +28,8 @@
     "require-dev": {
         "squizlabs/php_codesniffer": "*",
         "phan/phan": "^2.2",
-        "phpunit/phpunit": "^8"
+        "phpunit/phpunit": "^8",
+        "symfony/var-dumper": "^5.4"
     },
     "scripts": {
         "psr12": "phpcs --standard=PSR12 --colors src/",

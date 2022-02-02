@@ -3,8 +3,9 @@
 namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
+use Wead\ZipCode\Contracts\ProviderContract;
 
-class CepLa
+class CepLa extends ProviderContract
 {
     private $endPoint = "http://cep.la";
 

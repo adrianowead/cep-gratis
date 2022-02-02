@@ -3,8 +3,9 @@
 namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
+use Wead\ZipCode\Contracts\ProviderContract;
 
-class WideNet
+class WideNet extends ProviderContract
 {
     private $endPoint = "http://apps.widenet.com.br/busca-cep/api/cep.json";
 

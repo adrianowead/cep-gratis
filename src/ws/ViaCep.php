@@ -3,8 +3,9 @@
 namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
+use Wead\ZipCode\Contracts\ProviderContract;
 
-class ViaCep
+class ViaCep extends ProviderContract
 {
     private $endPoint = "https://viacep.com.br/ws/";
 

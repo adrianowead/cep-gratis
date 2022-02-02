@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+    php:
+        build:
+            context: .
+            dockerfile: ./docker/Dockerfile
+        container_name: "cep-gratis"
+        ports:
+            - target: 80
+              published: 8000
+              protocol: tcp
+              mode: host
+        volumes:
+            - ./:/var/www/html

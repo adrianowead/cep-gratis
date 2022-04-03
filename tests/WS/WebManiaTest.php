@@ -7,10 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class WebManiaTest extends TestCase
 {
-    private $webManiaCredential = [
-        'apiKey' => 't2BOfr8LUWPlhiaXOZMFCVYgkvwa0zmK',
-        'apiSecret' => '6j4mw7OYBXaoHI7QEUzC6qWAoKJUjoV8UduvwhjwhvYB71dL'
-    ];
+    private $webManiaCredential = [];
     
     /**
      * @dataProvider getCepDefaultWithOutput

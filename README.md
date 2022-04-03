@@ -55,3 +55,7 @@ $search->setMaxAttempts(2); // optional, attempts to try get address (default 5)
 var_dump($search->getAddressFromZipcode('03624010'));
 
 ```
+
+[![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.paypal.com/donate/?hosted_button_id=WW7N7R4Z5RA6A)
+
+![PayPal](https://raw.githubusercontent.com/adrianowead/adrianowead/main/img/qr-code-donate.png)

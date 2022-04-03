@@ -1,14 +1,12 @@
-version: "3.3"
+version: '3.7'
 services:
-    php:
-        build:
-            context: .
-            dockerfile: ./docker/Dockerfile
-        container_name: "cep-gratis"
-        ports:
-            - target: 80
-              published: 8000
-              protocol: tcp
-              mode: host
-        volumes:
-            - ./:/var/www/html
+  wead-cep-gratis:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    networks:
+      - wead_cep_gratis
+    volumes:
+      - './:/var/www/html'
+networks:
+  wead_cep_gratis: null

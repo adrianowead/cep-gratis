@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 class WebManiaTest extends TestCase
 {
     private $webManiaCredential = [
-            'apiKey' => 't2BOfr8LUWPlhiaXOZMFCVYgkvwa0zmK',
-            'apiSecret' => '6j4mw7OYBXaoHI7QEUzC6qWAoKJUjoV8UduvwhjwhvYB71dL'
+        'apiKey' => 't2BOfr8LUWPlhiaXOZMFCVYgkvwa0zmK',
+        'apiSecret' => '6j4mw7OYBXaoHI7QEUzC6qWAoKJUjoV8UduvwhjwhvYB71dL'
     ];
     
     /**
@@ -18,7 +18,7 @@ class WebManiaTest extends TestCase
     public function testGetAddressFromZipcodeWebManiaDefaultUsage(string $zipCode, array $expected)
     {
         $webMania = new WebMania($this->webManiaCredential);
-        $out = $webMania->getAddressFromZipcode($zipCode, true);
+        $out = $webMania->getAddressFromZipcode($zipCode);
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
@@ -49,6 +49,26 @@ class WebManiaTest extends TestCase
         return [
             "Dados esperados Luís Asson" => [
                 "03624010",
+                [
+                    "status" => true,
+                    "address" => "Rua Luís Asson",
+                    "district" => "Vila Buenos Aires",
+                    "city" => "São Paulo",
+                    "state" => "SP",
+                    "api" => "WebMania"
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * Returns all data to be used on tests
+     */
+    public function getCepEmptyDefaultWithOutput()
+    {
+        return [
+            "Dados esperados vazio" => [
+                "00000000",
                 [
                     "status" => false,
                     "address" => null,

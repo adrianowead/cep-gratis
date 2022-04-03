@@ -23,7 +23,7 @@ Consulta online à diversos serviços gratuitos de CEP online.
 - [x] [ViaCep](https://viacep.com.br/)
 - [x] [CepLa](http://cep.la/)
 - [x] [WebMania](https://webmaniabr.com/docs/rest-api-cep-ibge/)
-- [ ] Correios
+- [x] [ApiCEP](https://apicep.com/)
 
 ## Instalação
 

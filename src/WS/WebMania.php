@@ -3,8 +3,9 @@
 namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
+use Wead\ZipCode\Contracts\ProviderContract;
 
-class WebMania
+class WebMania extends ProviderContract
 {
     private $endPoint = "https://webmaniabr.com/api/1/cep";
     private $apiKey = null;

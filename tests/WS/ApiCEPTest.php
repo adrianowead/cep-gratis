@@ -2,45 +2,52 @@
 
 namespace Wead\ZipCode\Tests\WS;
 
-use Wead\ZipCode\WS\WebMania;
 use PHPUnit\Framework\TestCase;
+use Wead\ZipCode\WS\ApiCEP;
 
-class WebManiaTest extends TestCase
+class ApiCEPTest extends TestCase
 {
-    private $webManiaCredential = [
-            'apiKey' => 't2BOfr8LUWPlhiaXOZMFCVYgkvwa0zmK',
-            'apiSecret' => '6j4mw7OYBXaoHI7QEUzC6qWAoKJUjoV8UduvwhjwhvYB71dL'
-    ];
-    
     /**
      * @dataProvider getCepDefaultWithOutput
      */
-    public function testGetAddressFromZipcodeWebManiaDefaultUsage(string $zipCode, array $expected)
+    public function testGetAddressFromApiCEPDefaultUsage(string $zipCode, array $expected)
     {
-        $webMania = new WebMania($this->webManiaCredential);
-        $out = $webMania->getAddressFromZipcode($zipCode, true);
+        $cep = new ApiCEP();
+        $out = $cep->getAddressFromZipcode($zipCode);
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
     }
 
     /**
-     * @dataProvider getMockInputOutput
+     * @dataProvider getCepEmptyDefaultWithOutput
      */
-    public function testNormalizeResponseWebManiaDefaultUsage(array $address, array $expected)
+    public function testGetAddressEmptyFromApiCEPDefaultUsage(string $zipCode, array $expected)
     {
-        $webMania = new WebMania($this->webManiaCredential);
-        
-        $reflect = new \ReflectionObject($webMania);
-        $method = $reflect->getMethod('normalizeResponse');
-        $method->setAccessible(true); // turns private method accessible
-        
-        $out = $method->invoke($webMania, $address);
+        $cep = new ApiCEP();
+        $out = $cep->getAddressFromZipcode($zipCode);
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
     }
+    
+    /**
+     * @dataProvider getMockInputOutput
+     */
+    public function testNormalizeResponseApiCEPDefaultUsage(array $address, array $expected)
+    {
+        $cep = new ApiCEP();
+        
+        $reflect = new \ReflectionObject($cep);
+        $method = $reflect->getMethod('normalizeResponse');
+        $method->setAccessible(true); // turns private method accessible
+        
+        $out = $method->invoke($cep, $address);
 
+        // must be qual structure and values
+        self::assertEquals($expected, $out);
+    }
+    
     /**
      * Returns all data to be used on tests
      */
@@ -50,12 +57,32 @@ class WebManiaTest extends TestCase
             "Dados esperados Luís Asson" => [
                 "03624010",
                 [
+                    "status" => true,
+                    "address" => "Rua Luís Asson",
+                    "district" => "Vila Buenos Aires",
+                    "city" => "São Paulo",
+                    "state" => "SP",
+                    "api" => "ApiCEP"
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * Returns all data to be used on tests
+     */
+    public function getCepEmptyDefaultWithOutput()
+    {
+        return [
+            "Dados esperados vazio" => [
+                "00000000",
+                [
                     "status" => false,
                     "address" => null,
                     "district" => null,
                     "city" => null,
                     "state" => null,
-                    "api" => "WebMania"
+                    "api" => "ApiCEP"
                 ]
             ]
         ];
@@ -66,9 +93,9 @@ class WebManiaTest extends TestCase
         return [
             "Input e Output Luís Asson" => [
                 [
-                    "endereco" => "Rua Luís Asson",
+                    "logradouro" => "Rua Luís Asson",
                     "bairro" => "Vila Buenos Aires",
-                    "cidade" => "São Paulo",
+                    "localidade" => "São Paulo",
                     "uf" => "SP",
                 ],
                 [
@@ -77,7 +104,7 @@ class WebManiaTest extends TestCase
                     "district" => "Vila Buenos Aires",
                     "city" => "São Paulo",
                     "state" => "SP",
-                    "api" => "WebMania"
+                    "api" => "ViaCep"
                 ]
             ]
         ];

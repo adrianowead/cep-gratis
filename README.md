@@ -23,8 +23,7 @@ Consulta online à diversos serviços gratuitos de CEP online.
 - [x] [ViaCep](https://viacep.com.br/)
 - [x] [CepLa](http://cep.la/)
 - [x] [WebMania](https://webmaniabr.com/docs/rest-api-cep-ibge/)
-- [x] [WideNet](https://apps.widenet.com.br/busca-cep/api-de-consulta)
-- [ ] Correios
+- [x] [ApiCEP](https://apicep.com/)
 
 ## Instalação
 
@@ -43,16 +42,13 @@ require "vendor/autoload.php";
 
 use Wead\ZipCode\Search;
 
-// web mania api (optional)
-$webMania = [
-    'apiKey' => 'NHRvLagxDUWw70Guhd4fMSKccftSjvtL',
-    'apiSecret' => 'qVB3AmE2N5UKSL2ok01YP6gVUEqERYQLiPGtye65C6OQZAd0'
-];
-
 $search = new Search;
-$search->setCredential('webMania', $webMania);
 $search->setMaxAttempts(2); // optional, attempts to try get address (default 5)
 
 var_dump($search->getAddressFromZipcode('03624010'));
 
 ```
+
+[![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.paypal.com/donate/?hosted_button_id=WW7N7R4Z5RA6A)
+
+![PayPal](https://raw.githubusercontent.com/adrianowead/adrianowead/main/img/qr-code-donate.png)

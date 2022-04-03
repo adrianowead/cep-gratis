@@ -2,35 +2,37 @@
 
 namespace Wead\ZipCode\Tests\WS;
 
-use Wead\ZipCode\WS\WideNet;
+use Wead\ZipCode\WS\WebMania;
 use PHPUnit\Framework\TestCase;
 
-class WideNetTest extends TestCase
+class WebManiaTest extends TestCase
 {
+    private $webManiaCredential = [];
+    
     /**
      * @dataProvider getCepDefaultWithOutput
      */
-    public function testGetAddressFromZipcodeWideNetDefaultUsage(string $zipCode, array $expected)
+    public function testGetAddressFromZipcodeWebManiaDefaultUsage(string $zipCode, array $expected)
     {
-        $wideNet = new WideNet();
-        $out = $wideNet->getAddressFromZipcode($zipCode);
+        $webMania = new WebMania($this->webManiaCredential);
+        $out = $webMania->getAddressFromZipcode($zipCode);
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
     }
-    
+
     /**
      * @dataProvider getMockInputOutput
      */
-    public function testNormalizeResponseWideNetDefaultUsage(array $address, array $expected)
+    public function testNormalizeResponseWebManiaDefaultUsage(array $address, array $expected)
     {
-        $wideNet = new WideNet();
+        $webMania = new WebMania($this->webManiaCredential);
         
-        $reflect = new \ReflectionObject($wideNet);
+        $reflect = new \ReflectionObject($webMania);
         $method = $reflect->getMethod('normalizeResponse');
         $method->setAccessible(true); // turns private method accessible
         
-        $out = $method->invoke($wideNet, $address);
+        $out = $method->invoke($webMania, $address);
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
@@ -50,7 +52,27 @@ class WideNetTest extends TestCase
                     "district" => "Vila Buenos Aires",
                     "city" => "São Paulo",
                     "state" => "SP",
-                    "api" => "WideNet"
+                    "api" => "WebMania"
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * Returns all data to be used on tests
+     */
+    public function getCepEmptyDefaultWithOutput()
+    {
+        return [
+            "Dados esperados vazio" => [
+                "00000000",
+                [
+                    "status" => false,
+                    "address" => null,
+                    "district" => null,
+                    "city" => null,
+                    "state" => null,
+                    "api" => "WebMania"
                 ]
             ]
         ];
@@ -61,10 +83,10 @@ class WideNetTest extends TestCase
         return [
             "Input e Output Luís Asson" => [
                 [
-                    "address" => "Rua Luís Asson",
-                    "district" => "Vila Buenos Aires",
-                    "city" => "São Paulo",
-                    "state" => "SP",
+                    "endereco" => "Rua Luís Asson",
+                    "bairro" => "Vila Buenos Aires",
+                    "cidade" => "São Paulo",
+                    "uf" => "SP",
                 ],
                 [
                     "status" => true,
@@ -72,7 +94,7 @@ class WideNetTest extends TestCase
                     "district" => "Vila Buenos Aires",
                     "city" => "São Paulo",
                     "state" => "SP",
-                    "api" => "WideNet"
+                    "api" => "WebMania"
                 ]
             ]
         ];

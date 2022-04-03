@@ -3,10 +3,11 @@
 namespace Wead\ZipCode\WS;
 
 use GuzzleHttp\Client;
+use Wead\ZipCode\Contracts\ProviderContract;
 
-class ViaCep
+class CepLa extends ProviderContract
 {
-    private $endPoint = "https://viacep.com.br/ws/";
+    private $endPoint = "http://cep.la";
 
     public function getAddressFromZipcode($zipCode)
     {
@@ -16,10 +17,10 @@ class ViaCep
             "Accept" => "application/json",
         ];
 
-        $client = new Client(['base_uri' => "{$this->endPoint}/{$zipCode}/"]);
+        $client = new Client(['base_uri' => "{$this->endPoint}/{$zipCode}"]);
 
         $response = $client->get(
-            'json',
+            '',
             [
                 'headers' => $headers,
                 'connect_timeout' => 5, // seconds
@@ -35,14 +36,14 @@ class ViaCep
 
     private function normalizeResponse($address)
     {
-        if (sizeof($address) > 0 && !isset($address["erro"])) {
+        if (sizeof($address) > 0) {
             return [
                 "status" => true,
                 "address" => $address["logradouro"],
                 "district" => $address["bairro"],
-                "city" => $address["localidade"],
+                "city" => $address["cidade"],
                 "state" => $address["uf"],
-                "api" => "ViaCep"
+                "api" => "CepLa"
             ];
         } else {
             return [
@@ -51,7 +52,7 @@ class ViaCep
                 "district" => null,
                 "city" => null,
                 "state" => null,
-                "api" => "ViaCep"
+                "api" => "CepLa"
             ];
         }
     }

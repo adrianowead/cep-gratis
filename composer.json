@@ -21,7 +21,7 @@
         },
         "psr-4": {
             "Wead\\ZipCode\\": "src/",
-            "Wead\\ZipCode\\WS\\": "src/ws"
+            "Wead\\ZipCode\\WS\\": "src/WS"
         },
         "files": []
     },

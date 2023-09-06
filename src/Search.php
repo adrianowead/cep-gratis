@@ -15,7 +15,6 @@ namespace Wead\ZipCode;
 use Wead\ZipCode\Exceptions\ZipCodeNotFoundException;
 use Wead\ZipCode\WS\CepLa;
 use Wead\ZipCode\WS\ViaCep;
-use Wead\ZipCode\WS\WideNet;
 use Wead\ZipCode\WS\WebMania;
 
 class Search
@@ -92,10 +91,6 @@ class Search
                         $found = $this->getFromWebMania($zipCode);
                         break;
 
-                    case 'WideNet':
-                        $found = $this->getFromWideNet($zipCode);
-                        break;
-
                     case 'CepLa':
                         $found = $this->getFromCepLa($zipCode);
                         break;
@@ -126,14 +121,6 @@ class Search
     {
         $zip = new WebMania(isset($this->credential['webMania']) ? $this->credential['webMania'] : []);
         $zip = $zip->getAddressFromZipcode($zipCode, $runningTest);
-
-        return $zip;
-    }
-
-    private function getFromWideNet($zipCode)
-    {
-        $zip = new WideNet();
-        $zip = $zip->getAddressFromZipcode($zipCode);
 
         return $zip;
     }

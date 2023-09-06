@@ -22,7 +22,6 @@ class Search
     private $listApi = [
         'ViaCep',
         'WebMania',
-        'WideNet',
         'CepLa'
     ];
 

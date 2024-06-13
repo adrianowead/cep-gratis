@@ -30,24 +30,24 @@ class ApiCEPTest extends TestCase
         // must be qual structure and values
         self::assertEquals($expected, $out);
     }
-    
+
     /**
      * @dataProvider getMockInputOutput
      */
     public function testNormalizeResponseApiCEPDefaultUsage(array $address, array $expected)
     {
         $cep = new ApiCEP();
-        
+
         $reflect = new \ReflectionObject($cep);
         $method = $reflect->getMethod('normalizeResponse');
         $method->setAccessible(true); // turns private method accessible
-        
+
         $out = $method->invoke($cep, $address);
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
     }
-    
+
     /**
      * Returns all data to be used on tests
      */
@@ -87,7 +87,7 @@ class ApiCEPTest extends TestCase
             ]
         ];
     }
-    
+
     public function getMockInputOutput()
     {
         return [

@@ -11,19 +11,22 @@ Consulta online à diversos serviços gratuitos de CEP online.
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/adrianowead/cep-gratis/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 ## Necessário
-[![Supported PHP version](https://img.shields.io/badge/PHP->%3D%205.6-blue.svg)]()
+[![Supported PHP version](https://img.shields.io/badge/PHP-%5E7.2.25_%7C%7C_%5E8.0-blue.svg)]()
 
 
 ## Dependências
-[![Requires Guzzle](https://img.shields.io/badge/Guzzle-~6.0-lightgrey.svg)]()
+[![Requires Guzzle](https://img.shields.io/badge/Guzzle->=7.8-lightgrey.svg)]()
 
 
 # Serviços suportados
 
 - [x] [ViaCep](https://viacep.com.br/)
-- [x] [CepLa](http://cep.la/)
 - [x] [WebMania](https://webmaniabr.com/docs/rest-api-cep-ibge/)
 - [x] [ApiCEP](https://apicep.com/)
+
+# Serviços descontinuados (_não existem mais_)
+
+- [CepLa](http://cep.la/)
 
 ## Instalação
 

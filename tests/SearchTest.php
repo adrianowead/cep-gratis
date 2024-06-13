@@ -28,11 +28,11 @@ class SearchTest extends TestCase
     {
         $search = new Search();
         $out = $search->setCredential('webMania', $this->webManiaCredential);
-        
+
         // must be null (void)
         self::assertNull($out);
     }
-    
+
     /**
      * @dataProvider getCepDefault
      */
@@ -107,7 +107,7 @@ class SearchTest extends TestCase
         // must be qual structure and values
         self::assertEquals($expected, $out);
     }
-    
+
     /**
      * @dataProvider getCepDefaultWithOutputWebania
      */
@@ -124,46 +124,6 @@ class SearchTest extends TestCase
         $method->setAccessible(true); // set accessible private method
 
         $out = $method->invoke($search, $zipCode, true);
-
-        // must be qual structure and values
-        self::assertEquals($expected, $out);
-    }
-    
-    /**
-     * @dataProvider getCepDefaultWithOutput
-     */
-    public function testGetAddressWideNetDirect(string $zipCode, array $expected)
-    {
-        $expected["api"] = "WideNet";
-
-        // reflect class to access private methods
-        $search = new Search();
-
-        $reflector = new \ReflectionObject($search);
-        $method = $reflector->getMethod('getFromWideNet');
-        $method->setAccessible(true); // set accessible private method
-
-        $out = $method->invoke($search, $zipCode);
-
-        // must be qual structure and values
-        self::assertEquals($expected, $out);
-    }
-    
-    /**
-     * @dataProvider getCepDefaultWithOutput
-     */
-    public function testGetAddressCepLaDirect(string $zipCode, array $expected)
-    {
-        $expected["api"] = "CepLa";
-
-        // reflect class to access private methods
-        $search = new Search();
-
-        $reflector = new \ReflectionObject($search);
-        $method = $reflector->getMethod('getFromCepLa');
-        $method->setAccessible(true); // set accessible private method
-
-        $out = $method->invoke($search, $zipCode);
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
@@ -187,7 +147,7 @@ class SearchTest extends TestCase
 
         $out = $method->invoke($search, $zipCode);
     }
-    
+
     /**
      * Returns all data to be used on tests
      */
@@ -226,7 +186,7 @@ class SearchTest extends TestCase
             ]
         ];
     }
-    
+
     /**
      * Returns all data to be used on tests
      */

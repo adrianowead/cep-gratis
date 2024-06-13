@@ -18,24 +18,24 @@ class ViaCepTest extends TestCase
         // must be qual structure and values
         self::assertEquals($expected, $out);
     }
-    
+
     /**
      * @dataProvider getMockInputOutput
      */
     public function testNormalizeResponseViaCepDefaultUsage(array $address, array $expected)
     {
         $viaCep = new ViaCep();
-        
+
         $reflect = new \ReflectionObject($viaCep);
         $method = $reflect->getMethod('normalizeResponse');
         $method->setAccessible(true); // turns private method accessible
-        
+
         $out = $method->invoke($viaCep, $address);
 
         // must be qual structure and values
         self::assertEquals($expected, $out);
     }
-    
+
     /**
      * Returns all data to be used on tests
      */
@@ -55,7 +55,7 @@ class ViaCepTest extends TestCase
             ]
         ];
     }
-    
+
     public function getMockInputOutput()
     {
         return [

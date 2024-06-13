@@ -7,6 +7,14 @@ services:
     volumes:
       - ./:/var/www/html
 
+  php74:
+    build:
+      context: .
+      dockerfile: Dockerfile74
+    container_name: php74
+    volumes:
+      - ./:/var/www/html
+
   php80:
     build:
       context: .

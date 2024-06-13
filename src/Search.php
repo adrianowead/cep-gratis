@@ -13,7 +13,6 @@
 namespace Wead\ZipCode;
 
 use Wead\ZipCode\Exceptions\ZipCodeNotFoundException;
-use Wead\ZipCode\WS\CepLa;
 use Wead\ZipCode\WS\ViaCep;
 use Wead\ZipCode\WS\WebMania;
 
@@ -22,7 +21,6 @@ class Search
     private $listApi = [
         'ViaCep',
         'WebMania',
-        'CepLa'
     ];
 
     private $credential = [
@@ -89,13 +87,15 @@ class Search
                     case 'WebMania':
                         $found = $this->getFromWebMania($zipCode);
                         break;
-
-                    case 'CepLa':
-                        $found = $this->getFromCepLa($zipCode);
-                        break;
                 }
 
-                if (!isset($found['city']) || !$found['status'] || !$found['city'] || strlen(trim($found['city'])) == 0) {
+                if (!isset($found['city'])) {
+                    $found = false;
+                } elseif (!$found['status']) {
+                    $found = false;
+                } elseif (!$found['city']) {
+                    $found = false;
+                } elseif (strlen(trim($found['city'])) == 0) {
                     $found = false;
                 }
             }
@@ -118,16 +118,10 @@ class Search
 
     private function getFromWebMania($zipCode, $runningTest = false)
     {
-        $zip = new WebMania(isset($this->credential['webMania']) ? $this->credential['webMania'] : []);
+        $mania = isset($this->credential['webMania']) ? $this->credential['webMania'] : [];
+
+        $zip = new WebMania($mania);
         $zip = $zip->getAddressFromZipcode($zipCode, $runningTest);
-
-        return $zip;
-    }
-
-    private function getFromCepLa($zipCode)
-    {
-        $zip = new CepLa();
-        $zip = $zip->getAddressFromZipcode($zipCode);
 
         return $zip;
     }

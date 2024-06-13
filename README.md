@@ -21,9 +21,12 @@ Consulta online à diversos serviços gratuitos de CEP online.
 # Serviços suportados
 
 - [x] [ViaCep](https://viacep.com.br/)
-- [x] [CepLa](http://cep.la/)
 - [x] [WebMania](https://webmaniabr.com/docs/rest-api-cep-ibge/)
 - [x] [ApiCEP](https://apicep.com/)
+
+# Serviços descontinuados (_não existem mais_)
+
+- [CepLa](http://cep.la/)
 
 ## Instalação
 

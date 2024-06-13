@@ -10,9 +10,9 @@ class ZipCodeNotFoundExceptionText extends TestCase
     public function testToString()
     {
         $exception = new ZipCodeNotFoundException("Test", 123);
-        
+
         $expected = "Wead\ZipCode\Exceptions\ZipCodeNotFoundException: [123]: Test\n";
-        
+
         $this->assertEquals($expected, $exception->__toString());
     }
 }

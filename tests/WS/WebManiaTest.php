@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 class WebManiaTest extends TestCase
 {
     private $webManiaCredential = [];
-    
+
     /**
      * @dataProvider getCepDefaultWithOutput
      */
@@ -27,11 +27,11 @@ class WebManiaTest extends TestCase
     public function testNormalizeResponseWebManiaDefaultUsage(array $address, array $expected)
     {
         $webMania = new WebMania($this->webManiaCredential);
-        
+
         $reflect = new \ReflectionObject($webMania);
         $method = $reflect->getMethod('normalizeResponse');
         $method->setAccessible(true); // turns private method accessible
-        
+
         $out = $method->invoke($webMania, $address);
 
         // must be qual structure and values
@@ -77,7 +77,7 @@ class WebManiaTest extends TestCase
             ]
         ];
     }
-    
+
     public function getMockInputOutput()
     {
         return [

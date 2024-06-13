@@ -1,12 +1,16 @@
-version: '3.7'
 services:
-  wead-cep-gratis:
+  php72:
     build:
       context: .
-      dockerfile: ./docker/Dockerfile
-    networks:
-      - wead_cep_gratis
+      dockerfile: Dockerfile72
+    container_name: php72
     volumes:
-      - './:/var/www/html'
-networks:
-  wead_cep_gratis: null
+      - ./:/var/www/html
+
+  php80:
+    build:
+      context: .
+      dockerfile: Dockerfile80
+    container_name: php80
+    volumes:
+      - ./:/var/www/html

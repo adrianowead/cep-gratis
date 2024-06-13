@@ -13,6 +13,7 @@
 namespace Wead\ZipCode;
 
 use Wead\ZipCode\Exceptions\ZipCodeNotFoundException;
+use Wead\ZipCode\WS\ApiCEP;
 use Wead\ZipCode\WS\ViaCep;
 use Wead\ZipCode\WS\WebMania;
 
@@ -21,6 +22,7 @@ class Search
     private $listApi = [
         'ViaCep',
         'WebMania',
+        'ApiCep',
     ];
 
     private $credential = [
@@ -84,6 +86,10 @@ class Search
                         $found = $this->getFromViaCep($zipCode);
                         break;
 
+                    case 'ApiCep':
+                        $found = $this->getFromApiCep($zipCode);
+                        break;
+                    
                     case 'WebMania':
                         $found = $this->getFromWebMania($zipCode);
                         break;
@@ -111,6 +117,14 @@ class Search
     private function getFromViaCep($zipCode)
     {
         $zip = new ViaCep();
+        $zip = $zip->getAddressFromZipcode($zipCode);
+
+        return $zip;
+    }
+
+    private function getFromApiCep($zipCode)
+    {
+        $zip = new ApiCEP();
         $zip = $zip->getAddressFromZipcode($zipCode);
 
         return $zip;

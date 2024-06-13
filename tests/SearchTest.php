@@ -130,26 +130,6 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @dataProvider getCepDefaultWithOutput
-     */
-    public function testGetAddressWideNetDirect(string $zipCode, array $expected)
-    {
-        $expected["api"] = "WideNet";
-
-        // reflect class to access private methods
-        $search = new Search();
-
-        $reflector = new \ReflectionObject($search);
-        $method = $reflector->getMethod('getFromWideNet');
-        $method->setAccessible(true); // set accessible private method
-
-        $out = $method->invoke($search, $zipCode);
-
-        // must be qual structure and values
-        self::assertEquals($expected, $out);
-    }
-
-    /**
      * @dataProvider getCepInvalid
      */
     public function testCustonExceptionInvalidZipcodeDefaultUsage(string $zipCode)

@@ -10,9 +10,11 @@ class ApiCEP extends ProviderContract
     {
         $zipCode = preg_replace('/[^0-9]/im', '', $zipCode);
 
-        $endPoint = "https://ws.apicep.com/cep/{$zipCode}.json";
+        $zipCode = substr($zipCode, 0, 5) . "-" . substr($zipCode, 5);
 
-        $content = file_get_contents($endPoint);
+        $endPoint = "https://cdn.apicep.com/file/apicep/{$zipCode}.json";
+
+        $content = @file_get_contents($endPoint);
 
         $response = json_decode($content);
 
